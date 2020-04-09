@@ -26,7 +26,9 @@ public abstract class ProductDatabase extends RoomDatabase {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                     ProductDatabase.class,
                     "CandyDispenser.db")
-                    .addCallback(sRoomDatabaseCallback).build(); //.allowMainThreadQueries()
+                    .addCallback(sRoomDatabaseCallback).build();
+                    //.addCallback(sRoomDatabaseCallback).build();
+                    //.allowMainThreadQueries().build();
         }
         return INSTANCE;
     }
@@ -46,12 +48,14 @@ public abstract class ProductDatabase extends RoomDatabase {
                     ProductDAO dao = INSTANCE.productDao();
                     dao.deleteAll();
 
+                    /*
                     Product product = new Product(1, "Cookies", 0.80f);
                     dao.insert(product);
                     product = new Product(2, "Water", 1.00f);
                     dao.insert(product);
                     product = new Product(3, "KitKat", 0.80f);
                     dao.insert(product);
+                    */
                 }
             });
         }
