@@ -7,13 +7,13 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import edu.intech.candydispenser.model.DataRepository;
 import edu.intech.candydispenser.db.entity.EmplacementEntity;
+import edu.intech.candydispenser.model.DataRepository;
 
 public class EmplacementViewModel extends AndroidViewModel {
 
-    private DataRepository repository;
-    private LiveData<List<EmplacementEntity>> mObservableEmplacements;
+    private final DataRepository repository;
+    private final LiveData<List<EmplacementEntity>> mObservableEmplacements;
 
     public EmplacementViewModel(Application application) {
         super(application);

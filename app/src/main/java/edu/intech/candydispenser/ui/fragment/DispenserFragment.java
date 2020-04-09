@@ -1,13 +1,6 @@
 package edu.intech.candydispenser.ui.fragment;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +8,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridLayout;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 import java.util.List;
 
 import edu.intech.candydispenser.R;
-import edu.intech.candydispenser.viewmodel.EmplacementViewModel;
 import edu.intech.candydispenser.db.entity.EmplacementEntity;
+import edu.intech.candydispenser.viewmodel.EmplacementViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,10 +30,6 @@ public class DispenserFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private Bundle arguments;
     private FragmentManager fragmentManager;
@@ -53,7 +48,7 @@ public class DispenserFragment extends Fragment {
      * @return A new instance of fragment DispenserFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static DispenserFragment newInstance(String param1, String param2) {
+    private static DispenserFragment newInstance(String param1, String param2) {
         DispenserFragment fragment = new DispenserFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -66,8 +61,9 @@ public class DispenserFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            // TODO: Rename and change types of parameters
+            String mParam1 = getArguments().getString(ARG_PARAM1);
+            String mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 

@@ -21,18 +21,18 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 import edu.intech.candydispenser.R;
+import edu.intech.candydispenser.db.entity.ProductEntity;
 import edu.intech.candydispenser.ui.adapter.ProductListAdapter;
 import edu.intech.candydispenser.ui.fragment.FormFragment;
 import edu.intech.candydispenser.viewmodel.ProductViewModel;
-import edu.intech.candydispenser.db.entity.ProductEntity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private static DecimalFormat df = new DecimalFormat("0.00");
+    private static final DecimalFormat df = new DecimalFormat("0.00");
     private ProductViewModel productViewModel;
-    public static final int NEW_PRODUCT_ACTIVITY_REQUEST_CODE = 1;
-    FloatingActionButton fab;
-    Button submit;
+    private static final int NEW_PRODUCT_ACTIVITY_REQUEST_CODE = 1;
+    private FloatingActionButton fab;
+    private Button submit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

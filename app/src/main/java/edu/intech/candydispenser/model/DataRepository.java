@@ -14,11 +14,11 @@ import edu.intech.candydispenser.db.entity.ProductEntity;
 
 public class DataRepository {
 
-    private ProductDao productDao;
-    private LiveData<List<ProductEntity>> allProducts;
+    private final ProductDao productDao;
+    private final LiveData<List<ProductEntity>> allProducts;
 
-    private EmplacementDao emplacementDAO;
-    private LiveData<List<EmplacementEntity>> allEmplacements;
+    private final EmplacementDao emplacementDAO;
+    private final LiveData<List<EmplacementEntity>> allEmplacements;
 
     // Note that in order to unit test the ProductRepository, you have to remove the Application
     // dependency. This adds complexity and much more code, and this sample is not about testing.

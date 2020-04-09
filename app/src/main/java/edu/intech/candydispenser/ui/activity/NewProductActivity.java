@@ -13,10 +13,6 @@ import edu.intech.candydispenser.ui.fragment.FormFragment;
 
 public class NewProductActivity extends AppCompatActivity {
 
-    private FragmentManager fragmentManager;
-    private DispenserFragment dispenserFragment;
-    private FormFragment formFragment;
-
     Button btnKeyOne;
 
     @Override
@@ -24,9 +20,9 @@ public class NewProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_product);
 
-        fragmentManager = getSupportFragmentManager();
-        dispenserFragment = new DispenserFragment();
-        formFragment = new FormFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        DispenserFragment dispenserFragment = new DispenserFragment();
+        FormFragment formFragment = new FormFragment();
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fragmentNewProduct, dispenserFragment, "FRAG_DISPENSER");

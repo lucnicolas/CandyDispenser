@@ -7,13 +7,13 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import edu.intech.candydispenser.model.DataRepository;
 import edu.intech.candydispenser.db.entity.ProductEntity;
+import edu.intech.candydispenser.model.DataRepository;
 
 public class ProductViewModel extends AndroidViewModel {
 
-    private DataRepository repository;
-    private LiveData<List<ProductEntity>> mObservableProduct;
+    private final DataRepository repository;
+    private final LiveData<List<ProductEntity>> mObservableProduct;
 
     public ProductViewModel(Application application) {
         super(application);

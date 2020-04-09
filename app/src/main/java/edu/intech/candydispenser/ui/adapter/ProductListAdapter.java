@@ -15,24 +15,11 @@ import edu.intech.candydispenser.db.entity.ProductEntity;
 
 public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ProductViewHolder> {
 
-    class ProductViewHolder extends RecyclerView.ViewHolder {
-        private final TextView productItemView;
-
-        private ProductViewHolder(View itemView) {
-            super(itemView);
-            productItemView = itemView.findViewById(R.id.textView);
-        }
-    }
-
     private final LayoutInflater mInflater;
     private List<ProductEntity> productEntities; // Cached copy of words
 
-    public ProductListAdapter(Context context) { mInflater = LayoutInflater.from(context); }
-
-    @Override
-    public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
-        return new ProductViewHolder(itemView);
+    public ProductListAdapter(Context context) {
+        mInflater = LayoutInflater.from(context);
     }
 
     @Override
@@ -42,7 +29,22 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             holder.productItemView.setText(current.getNumber() + " - " + current.getName() + " - " + current.getPrice());
         } else {
             // Covers the case of data not being ready yet.
-            holder.productItemView.setText("No Product");
+            holder.productItemView.setText(R.string.no_product);
+        }
+    }
+
+    @Override
+    public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
+        return new ProductViewHolder(itemView);
+    }
+
+    static class ProductViewHolder extends RecyclerView.ViewHolder {
+        private final TextView productItemView;
+
+        private ProductViewHolder(View itemView) {
+            super(itemView);
+            productItemView = itemView.findViewById(R.id.textView);
         }
     }
 
