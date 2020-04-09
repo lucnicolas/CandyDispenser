@@ -1,4 +1,4 @@
-package edu.intech.candydispenser.ui;
+package edu.intech.candydispenser.ui.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;

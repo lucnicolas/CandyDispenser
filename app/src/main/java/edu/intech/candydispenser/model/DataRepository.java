@@ -1,4 +1,4 @@
-package edu.intech.candydispenser;
+package edu.intech.candydispenser.model;
 
 import android.app.Application;
 
@@ -34,17 +34,17 @@ public class DataRepository {
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
-    public LiveData<List<ProductEntity>> getAll() {
+    public LiveData<List<ProductEntity>> getAllProducts() {
         return allProducts;
     }
 
-    public LiveData<ProductEntity> get(int number) {
+    public LiveData<ProductEntity> getProduct(int number) {
         return productDao.getProduct(number);
     }
 
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures
     // that you're not doing any long running operations on the main thread, blocking the UI.
-    public void insert(final ProductEntity productEntity) {
+    public void insertProduct(final ProductEntity productEntity) {
         AppDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {

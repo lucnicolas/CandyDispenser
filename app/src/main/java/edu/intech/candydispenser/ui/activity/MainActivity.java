@@ -1,4 +1,4 @@
-package edu.intech.candydispenser.ui;
+package edu.intech.candydispenser.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +21,8 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 import edu.intech.candydispenser.R;
+import edu.intech.candydispenser.ui.adapter.ProductListAdapter;
+import edu.intech.candydispenser.ui.fragment.FormFragment;
 import edu.intech.candydispenser.viewmodel.ProductViewModel;
 import edu.intech.candydispenser.db.entity.ProductEntity;
 

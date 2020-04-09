@@ -1,4 +1,4 @@
-package edu.intech.candydispenser.ui;
+package edu.intech.candydispenser.ui.fragment;
 
 import android.app.Activity;
 import android.content.Intent;

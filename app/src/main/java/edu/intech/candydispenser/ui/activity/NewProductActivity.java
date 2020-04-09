@@ -1,4 +1,4 @@
-package edu.intech.candydispenser.ui;
+package edu.intech.candydispenser.ui.activity;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -8,6 +8,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import edu.intech.candydispenser.R;
+import edu.intech.candydispenser.ui.fragment.DispenserFragment;
+import edu.intech.candydispenser.ui.fragment.FormFragment;
 
 public class NewProductActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package edu.intech.candydispenser.data.models;
+package edu.intech.candydispenser.db.entity;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
@@ -6,7 +6,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "Emplacements")
-public class Emplacement {
+public class EmplacementEntity {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -15,7 +15,6 @@ public class Emplacement {
     @NonNull
     @ColumnInfo(name = "availability", defaultValue = "0")
     private int availability;
-
 
     public int getId() {
         return id;

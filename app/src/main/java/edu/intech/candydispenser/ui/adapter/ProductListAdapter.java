@@ -1,4 +1,4 @@
-package edu.intech.candydispenser.ui;
+package edu.intech.candydispenser.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -27,7 +27,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     private final LayoutInflater mInflater;
     private List<ProductEntity> productEntities; // Cached copy of words
 
-    ProductListAdapter(Context context) { mInflater = LayoutInflater.from(context); }
+    public ProductListAdapter(Context context) { mInflater = LayoutInflater.from(context); }
 
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -46,7 +46,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         }
     }
 
-    void setProductEntities(List<ProductEntity> productEntities){
+    public void setProductEntities(List<ProductEntity> productEntities){
         this.productEntities = productEntities;
         notifyDataSetChanged();
     }

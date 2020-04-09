@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import edu.intech.candydispenser.DataRepository;
+import edu.intech.candydispenser.model.DataRepository;
 import edu.intech.candydispenser.db.entity.ProductEntity;
 
 public class ProductViewModel extends AndroidViewModel {
@@ -18,7 +18,7 @@ public class ProductViewModel extends AndroidViewModel {
     public ProductViewModel(Application application) {
         super(application);
         repository = new DataRepository(application);
-        mObservableProduct = repository.getAll();
+        mObservableProduct = repository.getAllProducts();
     }
 
     public LiveData<List<ProductEntity>> getAllProducts() {
@@ -26,10 +26,10 @@ public class ProductViewModel extends AndroidViewModel {
     }
 
     public LiveData<ProductEntity> getProduct(int number) {
-        return repository.get(number);
+        return repository.getProduct(number);
     }
 
     public void insert(ProductEntity productEntity) {
-        repository.insert(productEntity);
+        repository.insertProduct(productEntity);
     }
 }
