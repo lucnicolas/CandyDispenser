@@ -8,13 +8,9 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "Emplacements")
 public class EmplacementEntity {
 
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    private int id;
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") private int id;
 
-    @NonNull
-    @ColumnInfo(name = "availability", defaultValue = "0")
-    private int availability;
+    @NonNull @ColumnInfo(name = "productId", defaultValue = "0") private int productId;
 
     public int getId() {
         return id;
@@ -24,11 +20,11 @@ public class EmplacementEntity {
         this.id = id;
     }
 
-    public int getAvailability() {
-        return availability;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setAvailability(int availability) {
-        this.availability = availability;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 }

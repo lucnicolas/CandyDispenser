@@ -5,28 +5,20 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
+import androidx.room.Relation;
 
 @Entity(tableName = "Products", indices = {@Index(value = {"number"}, unique = true)})
 public class ProductEntity {
 
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    private int id;
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") private int id;
 
-    @NonNull
-    @ColumnInfo(name = "number")
-    private int number;
+    @NonNull @ColumnInfo(name = "number") private int number;
 
-    @NonNull
-    @ColumnInfo(name = "name")
-    private String name;
+    @NonNull @ColumnInfo(name = "name") private String name;
 
-    @NonNull
-    @ColumnInfo(name = "price")
-    private float price;
+    @NonNull @ColumnInfo(name = "price") private float price;
 
-    @ColumnInfo(name = "emplacement")
-    private int emplacement;
+    @ColumnInfo(name = "emplacement") private int emplacement;
 
     public ProductEntity(int number, String name, Float price, int emplacement) {
         this.number = number;
