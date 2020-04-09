@@ -27,8 +27,17 @@ public class FormFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    /**
+     * The constant EXTRA_REPLY_NAME.
+     */
     public static final String EXTRA_REPLY_NAME = "edu.intech.candydispenser.name.REPLY";
+    /**
+     * The constant EXTRA_REPLY_NUMBER.
+     */
     public static final String EXTRA_REPLY_NUMBER = "edu.intech.candydispenser.number.REPLY";
+    /**
+     * The constant EXTRA_REPLY_PRICE.
+     */
     public static final String EXTRA_REPLY_PRICE = "edu.intech.candydispenser.price.REPLY";
 
     private EditText mEditNameView;
@@ -38,6 +47,9 @@ public class FormFragment extends Fragment {
     private FragmentManager fragmentManager;
     private DispenserFragment dispenserFragment;
 
+    /**
+     * Instantiates a new Form fragment.
+     */
     public FormFragment() {
         // Required empty public constructor
     }

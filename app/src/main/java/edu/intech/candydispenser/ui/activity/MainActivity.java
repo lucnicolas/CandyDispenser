@@ -26,6 +26,9 @@ import edu.intech.candydispenser.ui.adapter.ProductListAdapter;
 import edu.intech.candydispenser.ui.fragment.FormFragment;
 import edu.intech.candydispenser.viewmodel.ProductViewModel;
 
+/**
+ * The type Main activity.
+ */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static final DecimalFormat df = new DecimalFormat("0.00");
@@ -91,8 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v.equals(fab)) {
             Intent intent = new Intent(MainActivity.this, NewProductActivity.class);
             startActivityForResult(intent, NEW_PRODUCT_ACTIVITY_REQUEST_CODE);
-        }
-        else if (v.equals(submit)) {
+        } else if (v.equals(submit)) {
             EditText editText = findViewById(R.id.editText);
             final TextView message = findViewById(R.id.text);
             try {

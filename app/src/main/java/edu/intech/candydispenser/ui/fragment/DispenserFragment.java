@@ -35,6 +35,9 @@ public class DispenserFragment extends Fragment {
     private FragmentManager fragmentManager;
     private FormFragment formFragment;
 
+    /**
+     * Instantiates a new Dispenser fragment.
+     */
     public DispenserFragment() {
         // Required empty public constructor
     }

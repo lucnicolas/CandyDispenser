@@ -13,11 +13,19 @@ import java.util.List;
 import edu.intech.candydispenser.R;
 import edu.intech.candydispenser.db.entity.ProductEntity;
 
+/**
+ * The type Product list adapter.
+ */
 public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ProductViewHolder> {
 
     private final LayoutInflater mInflater;
     private List<ProductEntity> productEntities; // Cached copy of words
 
+    /**
+     * Instantiates a new Product list adapter.
+     *
+     * @param context the context
+     */
     public ProductListAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
     }
@@ -39,6 +47,19 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         return new ProductViewHolder(itemView);
     }
 
+    /**
+     * Set product entities.
+     *
+     * @param productEntities the product entities
+     */
+    public void setProductEntities(List<ProductEntity> productEntities) {
+        this.productEntities = productEntities;
+        notifyDataSetChanged();
+    }
+
+    /**
+     * The type Product view holder.
+     */
     static class ProductViewHolder extends RecyclerView.ViewHolder {
         private final TextView productItemView;
 
@@ -46,11 +67,6 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             super(itemView);
             productItemView = itemView.findViewById(R.id.textView);
         }
-    }
-
-    public void setProductEntities(List<ProductEntity> productEntities){
-        this.productEntities = productEntities;
-        notifyDataSetChanged();
     }
 
     // getItemCount() is called many times, and when it is first called,

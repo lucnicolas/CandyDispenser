@@ -11,8 +11,14 @@ import edu.intech.candydispenser.R;
 import edu.intech.candydispenser.ui.fragment.DispenserFragment;
 import edu.intech.candydispenser.ui.fragment.FormFragment;
 
+/**
+ * The type New product activity.
+ */
 public class NewProductActivity extends AppCompatActivity {
 
+    /**
+     * The Btn one.
+     */
     Button btnKeyOne;
 
     @Override
