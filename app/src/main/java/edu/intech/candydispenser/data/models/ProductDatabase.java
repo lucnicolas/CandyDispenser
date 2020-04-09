@@ -11,10 +11,11 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(version = 1, entities = {Product.class})
+@Database(version = 2, entities = {Product.class, Emplacement.class})
 public abstract class ProductDatabase extends RoomDatabase {
 
     public abstract ProductDAO productDao();
+    public abstract EmplacementDAO emplacementDao();
 
     private static volatile ProductDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
@@ -26,6 +27,7 @@ public abstract class ProductDatabase extends RoomDatabase {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                     ProductDatabase.class,
                     "CandyDispenser.db")
+                    .fallbackToDestructiveMigration()
                     .addCallback(sRoomDatabaseCallback).build();
                     //.addCallback(sRoomDatabaseCallback).build();
                     //.allowMainThreadQueries().build();
@@ -45,17 +47,23 @@ public abstract class ProductDatabase extends RoomDatabase {
                 public void run() {
                     // Populate the database in the background.
                     // If you want to start with more words, just add them.
-                    ProductDAO dao = INSTANCE.productDao();
-                    dao.deleteAll();
+                    ProductDAO productDao = INSTANCE.productDao();
+                    EmplacementDAO emplacementDao = INSTANCE.emplacementDao();
 
-                    /*
-                    Product product = new Product(1, "Cookies", 0.80f);
-                    dao.insert(product);
-                    product = new Product(2, "Water", 1.00f);
-                    dao.insert(product);
-                    product = new Product(3, "KitKat", 0.80f);
-                    dao.insert(product);
-                    */
+                    emplacementDao.deleteAllEmplacement();
+                    productDao.deleteAllProducts();
+
+                    for (int i = 1; i <= 3; i++) {
+                        Emplacement emplacement = new Emplacement();
+                        emplacementDao.insertEmplacement(emplacement);
+                    }
+
+                    Product product = new Product(1, "Cookies", 0.80f, 0);
+                    productDao.insertProduct(product);
+                    product = new Product(2, "Water", 1.00f, 0);
+                    productDao.insertProduct(product);
+                    product = new Product(3, "KitKat", 0.80f, 0);
+                    productDao.insertProduct(product);
                 }
             });
         }

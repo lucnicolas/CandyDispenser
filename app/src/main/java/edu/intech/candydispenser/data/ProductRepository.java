@@ -22,7 +22,7 @@ class ProductRepository {
     ProductRepository(Application application) {
         ProductDatabase db = ProductDatabase.getDatabase(application);
         productDao = db.productDao();
-        allProducts = productDao.getAll();
+        allProducts = productDao.getAllProducts();
     }
 
     // Room executes all queries on a separate thread.
@@ -32,8 +32,8 @@ class ProductRepository {
     }
 
     LiveData<Product> get(int number) {
-        return productDao.get(number);
-    };
+        return productDao.getProduct(number);
+    }
 
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures
     // that you're not doing any long running operations on the main thread, blocking the UI.
@@ -41,7 +41,7 @@ class ProductRepository {
         ProductDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                productDao.insert(product);
+                productDao.insertProduct(product);
             }
         });
     }

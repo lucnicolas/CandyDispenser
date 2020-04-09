@@ -25,10 +25,14 @@ public class Product {
     @ColumnInfo(name = "price")
     private float price;
 
-    public Product(int number, String name, Float price) {
+    @ColumnInfo(name = "emplacement")
+    private int emplacement;
+
+    public Product(int number, String name, Float price, int emplacement) {
         this.number = number;
         this.name = name;
         this.price = price;
+        this.emplacement = emplacement;
     }
 
     public int getId() {
@@ -61,5 +65,13 @@ public class Product {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public int getEmplacement() {
+        return emplacement;
+    }
+
+    public void setEmplacement(int emplacement) {
+        this.emplacement = emplacement;
     }
 }

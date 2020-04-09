@@ -15,21 +15,21 @@ import static androidx.room.OnConflictStrategy.IGNORE;
 public interface ProductDAO {
 
     @Insert(onConflict = IGNORE)
-    void insert(Product product);
+    void insertProduct(Product product);
 
     @Update(onConflict = IGNORE)
-    void update(Product product);
+    void updateProduct(Product product);
 
     // Return the removed product or null if it wasn't found
     @Delete
-    int RemoveProduct(Product product);
+    int removeProduct(Product product);
 
     @Query("SELECT * FROM Products WHERE number = :number")
-    LiveData<Product> get(int number);
+    LiveData<Product> getProduct(int number);
 
     @Query("SELECT * FROM Products")
-    LiveData<List<Product>> getAll();
+    LiveData<List<Product>> getAllProducts();
 
-    @Query("DELETE FROM PRODUCTS")
-    void deleteAll();
+    @Query("DELETE FROM Products")
+    void deleteAllProducts();
 }

@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Product product = new Product(
                         data.getIntExtra(FormFragment.EXTRA_REPLY_NUMBER, -1),
                         data.getStringExtra(FormFragment.EXTRA_REPLY_NAME),
-                        data.getFloatExtra(FormFragment.EXTRA_REPLY_PRICE, -1f));
+                        data.getFloatExtra(FormFragment.EXTRA_REPLY_PRICE, -1f), 0);
                 productViewModel.insert(product);
             } catch (NumberFormatException e) {
                 Toast.makeText(

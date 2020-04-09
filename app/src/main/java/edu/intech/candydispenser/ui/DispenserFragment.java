@@ -70,13 +70,17 @@ public class DispenserFragment extends Fragment implements View.OnClickListener 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View inflatedView = inflater.inflate(R.layout.fragment_dispenser, container, false);;
+        View inflatedView = inflater.inflate(R.layout.fragment_dispenser, container, false);
 
         fragmentManager = getActivity().getSupportFragmentManager();
         formFragment = new FormFragment();
         arguments = new Bundle();
 
+        // TODO: Create ViewModel & Repository class to Emplacement Table
+
         GridLayout gridLayout = inflatedView.findViewById(R.id.girdLayoutDispenser);
+
+        // TODO: GetAllEmplacement to generate buttons
         // create buttons in a loop
         for (int i = 1; i <= 18; i++) {
             Button button = new Button(getActivity());
