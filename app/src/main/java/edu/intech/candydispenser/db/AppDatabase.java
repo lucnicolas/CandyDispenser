@@ -16,7 +16,7 @@ import edu.intech.candydispenser.db.dao.ProductDao;
 import edu.intech.candydispenser.db.entity.EmplacementEntity;
 import edu.intech.candydispenser.db.entity.ProductEntity;
 
-@Database(entities = {ProductEntity.class, EmplacementEntity.class}, version = 2)
+@Database(entities = {ProductEntity.class, EmplacementEntity.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static volatile AppDatabase INSTANCE;
