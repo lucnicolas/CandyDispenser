@@ -21,8 +21,8 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 import edu.intech.candydispenser.R;
-import edu.intech.candydispenser.data.ProductViewModel;
-import edu.intech.candydispenser.data.models.Product;
+import edu.intech.candydispenser.viewmodel.ProductViewModel;
+import edu.intech.candydispenser.db.entity.ProductEntity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -44,11 +44,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
 
-        productViewModel.getAll().observe(this, new Observer<List<Product>>() {
+        productViewModel.getAllProducts().observe(this, new Observer<List<ProductEntity>>() {
             @Override
-            public void onChanged(@Nullable final List<Product> product) {
+            public void onChanged(@Nullable final List<ProductEntity> productEntity) {
                 // Update the cached copy of the products in the adapter.
-                adapter.setProducts(product);
+                adapter.setProductEntities(productEntity);
             }
         });
 
@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         submit = findViewById(R.id.button);
         submit.setOnClickListener(this);
+
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -64,11 +65,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (requestCode == NEW_PRODUCT_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             try {
-                Product product = new Product(
+                ProductEntity productEntity = new ProductEntity(
                         data.getIntExtra(FormFragment.EXTRA_REPLY_NUMBER, -1),
                         data.getStringExtra(FormFragment.EXTRA_REPLY_NAME),
                         data.getFloatExtra(FormFragment.EXTRA_REPLY_PRICE, -1f), 0);
-                productViewModel.insert(product);
+                productViewModel.insert(productEntity);
             } catch (NumberFormatException e) {
                 Toast.makeText(
                         getApplicationContext(),
@@ -94,11 +95,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             final TextView message = findViewById(R.id.text);
             try {
                 int number = Integer.parseInt(editText.getText().toString());
-                productViewModel.get(number).observe(this, new Observer<Product>() {
+                productViewModel.getProduct(number).observe(this, new Observer<ProductEntity>() {
                     @Override
-                    public void onChanged(Product product) {
+                    public void onChanged(ProductEntity productEntity) {
                         try {
-                            String text = getString(R.string.display_data, product.getName(), df.format(product.getPrice()));
+                            String text = getString(R.string.display_data, productEntity.getName(), df.format(productEntity.getPrice()));
                             message.setText(text);
                         } catch (Exception e) {
                             Toast.makeText(

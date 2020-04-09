@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import edu.intech.candydispenser.R;
-import edu.intech.candydispenser.data.models.Product;
+import edu.intech.candydispenser.db.entity.ProductEntity;
 
 public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ProductViewHolder> {
 
@@ -25,7 +25,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     }
 
     private final LayoutInflater mInflater;
-    private List<Product> products; // Cached copy of words
+    private List<ProductEntity> productEntities; // Cached copy of words
 
     ProductListAdapter(Context context) { mInflater = LayoutInflater.from(context); }
 
@@ -37,8 +37,8 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
-        if (products != null) {
-            Product current = products.get(position);
+        if (productEntities != null) {
+            ProductEntity current = productEntities.get(position);
             holder.productItemView.setText(current.getNumber() + " - " + current.getName() + " - " + current.getPrice());
         } else {
             // Covers the case of data not being ready yet.
@@ -46,8 +46,8 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         }
     }
 
-    void setProducts(List<Product> products){
-        this.products = products;
+    void setProductEntities(List<ProductEntity> productEntities){
+        this.productEntities = productEntities;
         notifyDataSetChanged();
     }
 
@@ -55,8 +55,8 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     // mWords has not been updated (means initially, it's null, and we can't return null).
     @Override
     public int getItemCount() {
-        if (products != null)
-            return products.size();
+        if (productEntities != null)
+            return productEntities.size();
         else return 0;
     }
 }

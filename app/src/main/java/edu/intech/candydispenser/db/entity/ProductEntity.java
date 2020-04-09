@@ -1,4 +1,4 @@
-package edu.intech.candydispenser.data.models;
+package edu.intech.candydispenser.db.entity;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
@@ -7,7 +7,7 @@ import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "Products", indices = {@Index(value = {"number"}, unique = true)})
-public class Product {
+public class ProductEntity {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -28,7 +28,7 @@ public class Product {
     @ColumnInfo(name = "emplacement")
     private int emplacement;
 
-    public Product(int number, String name, Float price, int emplacement) {
+    public ProductEntity(int number, String name, Float price, int emplacement) {
         this.number = number;
         this.name = name;
         this.price = price;
