@@ -22,7 +22,7 @@ import java.util.List;
 
 import edu.intech.candydispenser.R;
 import edu.intech.candydispenser.db.entity.ProductEntity;
-import edu.intech.candydispenser.ui.adapter.ProductListAdapter;
+import edu.intech.candydispenser.ui.adapter.ProductAdapter;
 import edu.intech.candydispenser.ui.fragment.FormFragment;
 import edu.intech.candydispenser.viewmodel.ProductViewModel;
 
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final ProductListAdapter adapter = new ProductListAdapter(this);
+        final ProductAdapter adapter = new ProductAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
