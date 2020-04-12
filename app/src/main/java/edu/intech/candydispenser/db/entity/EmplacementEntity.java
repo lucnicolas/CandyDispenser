@@ -11,9 +11,20 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "Emplacements")
 public class EmplacementEntity {
 
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") private int id;
+    @PrimaryKey
+    @ColumnInfo(name = "id")
+    private int id;
 
     @NonNull @ColumnInfo(name = "productId", defaultValue = "0") private int productId;
+
+    /**
+     * Instantiates a new Emplacement entity.
+     *
+     * @param id the id
+     */
+    public EmplacementEntity(int id) {
+        this.id = id;
+    }
 
     /**
      * Gets id.

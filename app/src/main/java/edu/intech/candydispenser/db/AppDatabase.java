@@ -16,7 +16,7 @@ import edu.intech.candydispenser.db.dao.ProductDao;
 import edu.intech.candydispenser.db.entity.EmplacementEntity;
 import edu.intech.candydispenser.db.entity.ProductEntity;
 
-@Database(entities = {ProductEntity.class, EmplacementEntity.class}, version = 3)
+@Database(entities = {ProductEntity.class, EmplacementEntity.class}, version = 4)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static volatile AppDatabase INSTANCE;
@@ -59,7 +59,7 @@ public abstract class AppDatabase extends RoomDatabase {
                     productDao.deleteAllProducts();
 
                     for (int i = 1; i <= 18; i++) {
-                        EmplacementEntity emplacementEntity = new EmplacementEntity();
+                        EmplacementEntity emplacementEntity = new EmplacementEntity(i);
                         emplacementDao.insertEmplacement(emplacementEntity);
                     }
 

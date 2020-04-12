@@ -1,23 +1,22 @@
 package edu.intech.candydispenser.ui.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.GridLayout;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import edu.intech.candydispenser.R;
 import edu.intech.candydispenser.db.entity.EmplacementEntity;
+import edu.intech.candydispenser.ui.adapter.EmplacementAdapter;
 import edu.intech.candydispenser.viewmodel.EmplacementViewModel;
 
 /**
@@ -81,65 +80,20 @@ public class DispenserFragment extends Fragment {
 
         final List<EmplacementEntity> emplacementEntityList = null;
 
-        final GridLayout gridLayout = inflatedView.findViewById(R.id.girdLayoutDispenser);
+        RecyclerView recyclerView = inflatedView.findViewById(R.id.recyclerview_buttons);
+        final EmplacementAdapter adapter = new EmplacementAdapter(getActivity());
+        recyclerView.setAdapter(adapter);
+        int numberOfColumns = 3;
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), numberOfColumns)); // Initialized RecyclerView using GirdLayoutManager
 
         EmplacementViewModel emplacementViewModel = new ViewModelProvider(this).get(EmplacementViewModel.class);
         emplacementViewModel.getAllEmplacements().observe(getViewLifecycleOwner(), new Observer<List<EmplacementEntity>>() {
             @Override
-            public void onChanged(List<EmplacementEntity> emplacementEntities) {
-                int i = 1;
-                for (EmplacementEntity emplacementEntity :
-                        emplacementEntities) {
-                    Log.d("DEBUG", "Emplacement numéro : " + i);
-                    Button button = new Button(getActivity());
-                    button.setText(String.valueOf(i));
-                    // R.id won't be generated for us, so we need to create one
-                    button.setId(i);
-
-                    // add our event handler (less memory than an anonymous inner class)
-                    button.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            arguments.putInt("KEY", v.getId());
-                            formFragment.setArguments(arguments);
-                            FragmentTransaction transaction = fragmentManager.beginTransaction();
-                            transaction.replace(R.id.fragmentNewProduct, formFragment, "FRAG_FORM");
-                            transaction.commit();
-                        }
-                    });
-
-                    // add generated button to view
-                    gridLayout.addView(button);
-
-                    // increment i
-                    i++;
-                }
+            public void onChanged(List<EmplacementEntity> emplacements) {
+                adapter.setEmplacements(emplacements);
             }
         });
 
-
-        /*
-        int i = 1;
-        // create buttons in a loop
-        if (emplacementList != null) {
-            for (Emplacement emplacement : emplacementList) {
-                Log.d("DEBUG", "Emplacement numéro : " + i);
-                Button button = new Button(getActivity());
-                button.setText(String.valueOf(i));
-                // R.id won't be generated for us, so we need to create one
-                button.setId(i);
-
-                // add our event handler (less memory than an anonymous inner class)
-                button.setOnClickListener(this);
-
-                // add generated button to view
-                gridLayout.addView(button);
-
-                // incremente i
-                i++;
-            }
-        }
-         */
         // Inflate the layout for this fragment
         return inflatedView;
     }

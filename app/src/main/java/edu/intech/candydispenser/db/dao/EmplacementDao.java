@@ -10,7 +10,7 @@ import java.util.List;
 
 import edu.intech.candydispenser.db.entity.EmplacementEntity;
 
-import static androidx.room.OnConflictStrategy.IGNORE;
+import static androidx.room.OnConflictStrategy.ABORT;
 
 /**
  * The interface Emplacement dao.
@@ -23,7 +23,7 @@ public interface EmplacementDao {
      *
      * @param emplacementEntity the emplacement entity
      */
-    @Insert(onConflict = IGNORE)
+    @Insert(onConflict = ABORT)
     void insertEmplacement(EmplacementEntity emplacementEntity);
 
     /**
