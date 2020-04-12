@@ -33,6 +33,7 @@ public class DispenserFragment extends Fragment {
     private Bundle arguments;
     private FragmentManager fragmentManager;
     private FormFragment formFragment;
+    private EmplacementAdapter adapter;
 
     /**
      * Instantiates a new Dispenser fragment.
@@ -81,7 +82,7 @@ public class DispenserFragment extends Fragment {
         final List<EmplacementEntity> emplacementEntityList = null;
 
         RecyclerView recyclerView = inflatedView.findViewById(R.id.recyclerview_buttons);
-        final EmplacementAdapter adapter = new EmplacementAdapter(getActivity());
+        adapter = new EmplacementAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         int numberOfColumns = 3;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), numberOfColumns)); // Initialized RecyclerView using GirdLayoutManager
