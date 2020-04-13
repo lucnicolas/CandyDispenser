@@ -1,4 +1,4 @@
-package edu.intech.candydispenser.ui.adapter;
+package edu.intech.candydispenser.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import edu.intech.candydispenser.R;
-import edu.intech.candydispenser.db.entity.Product;
+import edu.intech.candydispenser.data.Product;
 
 /**
  * The type Product list adapter.

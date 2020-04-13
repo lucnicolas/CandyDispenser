@@ -1,4 +1,4 @@
-package edu.intech.candydispenser.db;
+package edu.intech.candydispenser.data;
 
 import android.content.Context;
 
@@ -10,11 +10,6 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import edu.intech.candydispenser.db.dao.BoxDao;
-import edu.intech.candydispenser.db.dao.ProductDao;
-import edu.intech.candydispenser.db.entity.Box;
-import edu.intech.candydispenser.db.entity.Product;
 
 /**
  * The type App database.

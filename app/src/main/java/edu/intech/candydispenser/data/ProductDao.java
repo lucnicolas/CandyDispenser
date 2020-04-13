@@ -1,4 +1,4 @@
-package edu.intech.candydispenser.db.dao;
+package edu.intech.candydispenser.data;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -8,8 +8,6 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import java.util.List;
-
-import edu.intech.candydispenser.db.entity.Product;
 
 import static androidx.room.OnConflictStrategy.ABORT;
 import static androidx.room.OnConflictStrategy.REPLACE;

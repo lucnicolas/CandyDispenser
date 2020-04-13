@@ -1,4 +1,4 @@
-package edu.intech.candydispenser.ui.adapter;
+package edu.intech.candydispenser.ui;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -18,9 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import edu.intech.candydispenser.R;
-import edu.intech.candydispenser.db.entity.Box;
-import edu.intech.candydispenser.ui.activity.NewProductActivity;
-import edu.intech.candydispenser.ui.fragment.FormFragment;
+import edu.intech.candydispenser.data.Box;
 
 /**
  * The type Emplacement adapter.

@@ -1,4 +1,4 @@
-package edu.intech.candydispenser.ui.fragment;
+package edu.intech.candydispenser.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,8 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import edu.intech.candydispenser.R;
-import edu.intech.candydispenser.db.entity.Box;
-import edu.intech.candydispenser.ui.adapter.BoxAdapter;
+import edu.intech.candydispenser.data.Box;
 import edu.intech.candydispenser.viewmodel.BoxViewModel;
 
 /**

@@ -1,4 +1,4 @@
-package edu.intech.candydispenser.db.entity;
+package edu.intech.candydispenser.data;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

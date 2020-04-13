@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import edu.intech.candydispenser.db.entity.Product;
+import edu.intech.candydispenser.data.Product;
 import edu.intech.candydispenser.model.DataRepository;
 
 /**
