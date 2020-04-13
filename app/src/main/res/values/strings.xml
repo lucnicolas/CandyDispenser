@@ -10,14 +10,17 @@
     <string name="my_candies">My candies</string>
     <string name="search">Search</string>
     <string name="textview">TextView</string>
-    <string name="key_number">Type an box id</string>
-    <string name="price">Type a price (ex: 0.80)</string>
+    <string name="key_number">Type a box id</string>
+    <string name="price">Type a price (ex: $ 0.80)</string>
     <string name="no_product">No Product</string>
     <string name="select_an_emplacement">Please select where who want to add your new product</string>
     <string name="product_price">Product price</string>
     <string name="product_name">Product name</string>
     <string name="product_emplacement_id">Product box ID</string>
     <string name="your_new_product_properties">Your new product properties</string>
-    <string name="type_a_name_ex_water">Type a name (ex: water)</string>
+    <string name="type_a_name_ex_water">Type a name (ex: Water)</string>
+    <string name="here_you_can_search_a_product_by_enteing_a_box_id">Here you can search a product by entering a box ID</string>
+    <string name="welcome_to_the_candy_dispenser">Welcome to the Candy Dispenser</string>
+    <string name="type_a_number">Type a number</string>
 
 </resources>
