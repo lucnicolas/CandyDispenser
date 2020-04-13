@@ -7,9 +7,9 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import edu.intech.candydispenser.db.AppDatabase;
-import edu.intech.candydispenser.db.dao.EmplacementDao;
+import edu.intech.candydispenser.db.dao.BoxDao;
 import edu.intech.candydispenser.db.dao.ProductDao;
-import edu.intech.candydispenser.db.entity.Emplacement;
+import edu.intech.candydispenser.db.entity.Box;
 import edu.intech.candydispenser.db.entity.Product;
 
 /**
@@ -20,8 +20,8 @@ public class DataRepository {
     private final ProductDao productDao;
     private final LiveData<List<Product>> allProducts;
 
-    private final EmplacementDao emplacementDAO;
-    private final LiveData<List<Emplacement>> allEmplacements;
+    private final BoxDao boxDAO;
+    private final LiveData<List<Box>> allEmplacements;
 
     /**
      * Instantiates a new Data repository.
@@ -36,8 +36,8 @@ public class DataRepository {
         AppDatabase db = AppDatabase.getDatabase(application);
         productDao = db.productDao();
         allProducts = productDao.getAllProducts();
-        emplacementDAO = db.emplacementDao();
-        allEmplacements = emplacementDAO.getAllEmplacements();
+        boxDAO = db.emplacementDao();
+        allEmplacements = boxDAO.getAllEmplacements();
     }
 
     /**
@@ -82,7 +82,7 @@ public class DataRepository {
      *
      * @return the all emplacements
      */
-    public LiveData<List<Emplacement>> getAllEmplacements() {
+    public LiveData<List<Box>> getAllEmplacements() {
         return allEmplacements;
     }
 
@@ -92,20 +92,20 @@ public class DataRepository {
      * @param id the id
      * @return the emplacement
      */
-    public LiveData<Emplacement> getEmplacement(int id) {
-        return  emplacementDAO.getEmplacement(id);
+    public LiveData<Box> getEmplacement(int id) {
+        return boxDAO.getEmplacement(id);
     }
 
     /**
      * Insert emplacement.
      *
-     * @param emplacement the emplacement entity
+     * @param box the emplacement entity
      */
-    public void insertEmplacement(final Emplacement emplacement) {
+    public void insertEmplacement(final Box box) {
         AppDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                emplacementDAO.insertEmplacement(emplacement);
+                boxDAO.insertEmplacement(box);
             }
         });
     }
@@ -113,13 +113,13 @@ public class DataRepository {
     /**
      * Update emplacement.
      *
-     * @param emplacement the emplacement entity
+     * @param box the emplacement entity
      */
-    public void updateEmplacement(final Emplacement emplacement) {
+    public void updateEmplacement(final Box box) {
         AppDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                emplacementDAO.updateEmplacement(emplacement);
+                boxDAO.updateEmplacement(box);
             }
         });
     }

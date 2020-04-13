@@ -24,7 +24,7 @@ import edu.intech.candydispenser.R;
 import edu.intech.candydispenser.db.entity.Product;
 import edu.intech.candydispenser.ui.adapter.ProductAdapter;
 import edu.intech.candydispenser.ui.fragment.FormFragment;
-import edu.intech.candydispenser.viewmodel.EmplacementViewModel;
+import edu.intech.candydispenser.viewmodel.BoxViewModel;
 import edu.intech.candydispenser.viewmodel.ProductViewModel;
 
 /**
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final DecimalFormat df = new DecimalFormat("0.00");
     private ProductViewModel productViewModel;
-    private EmplacementViewModel emplacementViewModel;
+    private BoxViewModel boxViewModel;
     private static final int NEW_PRODUCT_ACTIVITY_REQUEST_CODE = 1;
     private FloatingActionButton fab;
     private Button submit;
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
-        emplacementViewModel = new ViewModelProvider(this).get(EmplacementViewModel.class);
+        boxViewModel = new ViewModelProvider(this).get(BoxViewModel.class);
 
         productViewModel.getAllProducts().observe(this, new Observer<List<Product>>() {
             @Override

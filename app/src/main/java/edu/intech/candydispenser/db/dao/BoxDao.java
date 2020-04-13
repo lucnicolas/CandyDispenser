@@ -9,7 +9,7 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import edu.intech.candydispenser.db.entity.Emplacement;
+import edu.intech.candydispenser.db.entity.Box;
 
 import static androidx.room.OnConflictStrategy.IGNORE;
 import static androidx.room.OnConflictStrategy.REPLACE;
@@ -18,32 +18,32 @@ import static androidx.room.OnConflictStrategy.REPLACE;
  * The interface Emplacement dao.
  */
 @Dao
-public interface EmplacementDao {
+public interface BoxDao {
 
     /**
      * Insert emplacement.
      *
-     * @param emplacement the emplacement entity
+     * @param box the emplacement entity
      */
     @Insert(onConflict = IGNORE)
-    void insertEmplacement(Emplacement emplacement);
+    void insertEmplacement(Box box);
 
     /**
      * Update emplacement.
      *
-     * @param emplacement the emplacement entity
+     * @param box the emplacement entity
      */
     @Update(onConflict = REPLACE)
-    void updateEmplacement(Emplacement emplacement);
+    void updateEmplacement(Box box);
 
     /**
      * Remove emplacement int.
      *
-     * @param emplacement the emplacement entity
+     * @param box the emplacement entity
      * @return the int
      */
     @Delete
-    int removeEmplacement(Emplacement emplacement);
+    int removeEmplacement(Box box);
 
     /**
      * Gets emplacement.
@@ -51,20 +51,20 @@ public interface EmplacementDao {
      * @param id the id
      * @return the emplacement
      */
-    @Query("SELECT * FROM Emplacement WHERE id = :id")
-    LiveData<Emplacement> getEmplacement(int id);
+    @Query("SELECT * FROM Box WHERE id = :id")
+    LiveData<Box> getEmplacement(int id);
 
     /**
      * Gets all emplacements.
      *
      * @return the all emplacements
      */
-    @Query("SELECT * FROM Emplacement")
-    LiveData<List<Emplacement>> getAllEmplacements();
+    @Query("SELECT * FROM Box")
+    LiveData<List<Box>> getAllEmplacements();
 
     /**
      * Delete all emplacement.
      */
-    @Query("DELETE FROM Emplacement")
+    @Query("DELETE FROM Box")
     void deleteAllEmplacement();
 }

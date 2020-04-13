@@ -7,23 +7,23 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import edu.intech.candydispenser.db.entity.Emplacement;
+import edu.intech.candydispenser.db.entity.Box;
 import edu.intech.candydispenser.model.DataRepository;
 
 /**
  * The type Emplacement view model.
  */
-public class EmplacementViewModel extends AndroidViewModel {
+public class BoxViewModel extends AndroidViewModel {
 
     private final DataRepository repository;
-    private final LiveData<List<Emplacement>> mObservableEmplacements;
+    private final LiveData<List<Box>> mObservableEmplacements;
 
     /**
      * Instantiates a new Emplacement view model.
      *
      * @param application the application
      */
-    public EmplacementViewModel(Application application) {
+    public BoxViewModel(Application application) {
         super(application);
         repository = new DataRepository(application);
         mObservableEmplacements = repository.getAllEmplacements();
@@ -34,7 +34,7 @@ public class EmplacementViewModel extends AndroidViewModel {
      *
      * @return the all emplacements
      */
-    public LiveData<List<Emplacement>> getAllEmplacements() {
+    public LiveData<List<Box>> getAllEmplacements() {
         return mObservableEmplacements;
     }
 
@@ -44,25 +44,25 @@ public class EmplacementViewModel extends AndroidViewModel {
      * @param id the id
      * @return the emplacement
      */
-    public LiveData<Emplacement> getEmplacement(int id) {
+    public LiveData<Box> getEmplacement(int id) {
         return repository.getEmplacement(id);
     }
 
     /**
      * Insert emplacement.
      *
-     * @param emplacement the emplacement entity
+     * @param box the emplacement entity
      */
-    public void insertEmplacement(Emplacement emplacement) {
-        repository.insertEmplacement(emplacement);
+    public void insertEmplacement(Box box) {
+        repository.insertEmplacement(box);
     }
 
     /**
      * Update emplacement.
      *
-     * @param emplacement the emplacement entity
+     * @param box the emplacement entity
      */
-    public void updateEmplacement(Emplacement emplacement) {
-        repository.updateEmplacement(emplacement);
+    public void updateEmplacement(Box box) {
+        repository.updateEmplacement(box);
     }
 }

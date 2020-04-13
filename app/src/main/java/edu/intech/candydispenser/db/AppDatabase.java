@@ -11,15 +11,15 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import edu.intech.candydispenser.db.dao.EmplacementDao;
+import edu.intech.candydispenser.db.dao.BoxDao;
 import edu.intech.candydispenser.db.dao.ProductDao;
-import edu.intech.candydispenser.db.entity.Emplacement;
+import edu.intech.candydispenser.db.entity.Box;
 import edu.intech.candydispenser.db.entity.Product;
 
 /**
  * The type App database.
  */
-@Database(entities = {Product.class, Emplacement.class}, version = 6)
+@Database(entities = {Product.class, Box.class}, version = 6)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static volatile AppDatabase INSTANCE;
@@ -41,14 +41,14 @@ public abstract class AppDatabase extends RoomDatabase {
                     // Populate the database in the background.
                     // If you want to start with more words, just add them.
                     ProductDao productDao = INSTANCE.productDao();
-                    EmplacementDao emplacementDao = INSTANCE.emplacementDao();
+                    BoxDao boxDao = INSTANCE.emplacementDao();
 
-                    emplacementDao.deleteAllEmplacement();
+                    boxDao.deleteAllEmplacement();
                     productDao.deleteAllProducts();
 
                     for (int i = 1; i <= 18; i++) {
-                        Emplacement emplacement = new Emplacement(i);
-                        emplacementDao.insertEmplacement(emplacement);
+                        Box box = new Box(i);
+                        boxDao.insertEmplacement(box);
                     }
                 }
             });
@@ -86,5 +86,5 @@ public abstract class AppDatabase extends RoomDatabase {
      *
      * @return the emplacement dao
      */
-    public abstract EmplacementDao emplacementDao();
+    public abstract BoxDao emplacementDao();
 }

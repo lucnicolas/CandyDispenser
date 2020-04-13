@@ -18,37 +18,37 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import edu.intech.candydispenser.R;
-import edu.intech.candydispenser.db.entity.Emplacement;
+import edu.intech.candydispenser.db.entity.Box;
 import edu.intech.candydispenser.ui.activity.NewProductActivity;
 import edu.intech.candydispenser.ui.fragment.FormFragment;
 
 /**
  * The type Emplacement adapter.
  */
-public class EmplacementAdapter extends RecyclerView.Adapter<EmplacementAdapter.EmplacementViewHolder> {
+public class BoxAdapter extends RecyclerView.Adapter<BoxAdapter.EmplacementViewHolder> {
 
     private final LayoutInflater mInflater;
     private Bundle arguments;
     private FragmentManager fragmentManager;
     private FormFragment formFragment;
-    private List<Emplacement> emplacements;
+    private List<Box> boxes;
 
     /**
      * Instantiates a new Emplacement adapter.
      *
      * @param context the context
      */
-    public EmplacementAdapter(Context context) {
+    public BoxAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
     }
 
     /**
      * Sets emplacements.
      *
-     * @param emplacements the emplacements
+     * @param boxes the emplacements
      */
-    public void setEmplacements(List<Emplacement> emplacements) {
-        this.emplacements = emplacements;
+    public void setBoxes(List<Box> boxes) {
+        this.boxes = boxes;
         notifyDataSetChanged();
     }
 
@@ -63,8 +63,8 @@ public class EmplacementAdapter extends RecyclerView.Adapter<EmplacementAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull EmplacementViewHolder holder, int position) {
-        if (emplacements != null) {
-            Emplacement current = emplacements.get(position);
+        if (boxes != null) {
+            Box current = boxes.get(position);
             Log.d("DEBUG", "Emplacement numéro : " + current.getId());
             Button button = holder.emplacementItemView;
             button.setText(String.valueOf(current.getId()));
@@ -93,8 +93,8 @@ public class EmplacementAdapter extends RecyclerView.Adapter<EmplacementAdapter.
 
     @Override
     public int getItemCount() {
-        if (emplacements != null)
-            return emplacements.size();
+        if (boxes != null)
+            return boxes.size();
         else return 0;
     }
 

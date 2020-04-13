@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import edu.intech.candydispenser.R;
-import edu.intech.candydispenser.db.entity.Emplacement;
-import edu.intech.candydispenser.ui.adapter.EmplacementAdapter;
-import edu.intech.candydispenser.viewmodel.EmplacementViewModel;
+import edu.intech.candydispenser.db.entity.Box;
+import edu.intech.candydispenser.ui.adapter.BoxAdapter;
+import edu.intech.candydispenser.viewmodel.BoxViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,7 +33,7 @@ public class DispenserFragment extends Fragment {
     private Bundle arguments;
     private FragmentManager fragmentManager;
     private FormFragment formFragment;
-    private EmplacementAdapter adapter;
+    private BoxAdapter adapter;
 
     /**
      * Instantiates a new Dispenser fragment.
@@ -79,19 +79,19 @@ public class DispenserFragment extends Fragment {
         formFragment = new FormFragment();
         arguments = new Bundle();
 
-        final List<Emplacement> emplacementList = null;
+        final List<Box> boxList = null;
 
         RecyclerView recyclerView = inflatedView.findViewById(R.id.recyclerview_buttons);
-        adapter = new EmplacementAdapter(getActivity());
+        adapter = new BoxAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         int numberOfColumns = 3;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), numberOfColumns)); // Initialized RecyclerView using GirdLayoutManager
 
-        EmplacementViewModel emplacementViewModel = new ViewModelProvider(this).get(EmplacementViewModel.class);
-        emplacementViewModel.getAllEmplacements().observe(getViewLifecycleOwner(), new Observer<List<Emplacement>>() {
+        BoxViewModel boxViewModel = new ViewModelProvider(this).get(BoxViewModel.class);
+        boxViewModel.getAllEmplacements().observe(getViewLifecycleOwner(), new Observer<List<Box>>() {
             @Override
-            public void onChanged(List<Emplacement> emplacements) {
-                adapter.setEmplacements(emplacements);
+            public void onChanged(List<Box> boxes) {
+                adapter.setBoxes(boxes);
             }
         });
 

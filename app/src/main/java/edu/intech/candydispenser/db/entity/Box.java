@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey;
 /**
  * The type Emplacement entity.
  */
-@Entity(tableName = "Emplacement")
-public class Emplacement {
+@Entity(tableName = "Box")
+public class Box {
 
     @PrimaryKey
     @ColumnInfo(name = "id")
@@ -22,7 +22,7 @@ public class Emplacement {
      *
      * @param id the id
      */
-    public Emplacement(int id) {
+    public Box(int id) {
         this.id = id;
     }
 
