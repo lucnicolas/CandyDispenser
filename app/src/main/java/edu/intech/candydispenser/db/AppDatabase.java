@@ -50,13 +50,6 @@ public abstract class AppDatabase extends RoomDatabase {
                         Emplacement emplacement = new Emplacement(i);
                         emplacementDao.insertEmplacement(emplacement);
                     }
-
-                    Product product = new Product(1, "Cookies", 0.80f);
-                    productDao.insertProduct(product);
-                    product = new Product(2, "Water", 1.00f);
-                    productDao.insertProduct(product);
-                    product = new Product(3, "KitKat", 0.80f);
-                    productDao.insertProduct(product);
                 }
             });
         }
