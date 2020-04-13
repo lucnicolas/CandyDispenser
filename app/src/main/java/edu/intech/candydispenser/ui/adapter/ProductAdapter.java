@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import edu.intech.candydispenser.R;
-import edu.intech.candydispenser.db.entity.ProductEntity;
+import edu.intech.candydispenser.db.entity.Product;
 
 /**
  * The type Product list adapter.
@@ -19,7 +19,7 @@ import edu.intech.candydispenser.db.entity.ProductEntity;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
     private final LayoutInflater mInflater;
-    private List<ProductEntity> productEntities; // Cached copy of words
+    private List<Product> productEntities; // Cached copy of words
 
     /**
      * Instantiates a new Product list adapter.
@@ -35,7 +35,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
      *
      * @param productEntities the product entities
      */
-    public void setProductEntities(List<ProductEntity> productEntities) {
+    public void setProductEntities(List<Product> productEntities) {
         this.productEntities = productEntities;
         notifyDataSetChanged();
     }
@@ -49,7 +49,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         if (productEntities != null) {
-            ProductEntity current = productEntities.get(position);
+            Product current = productEntities.get(position);
             holder.productItemView.setText(current.getNumber() + " - " + current.getName() + " - " + current.getPrice());
         } else {
             // Covers the case of data not being ready yet.

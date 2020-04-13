@@ -13,13 +13,13 @@ import java.util.concurrent.Executors;
 
 import edu.intech.candydispenser.db.dao.EmplacementDao;
 import edu.intech.candydispenser.db.dao.ProductDao;
-import edu.intech.candydispenser.db.entity.EmplacementEntity;
-import edu.intech.candydispenser.db.entity.ProductEntity;
+import edu.intech.candydispenser.db.entity.Emplacement;
+import edu.intech.candydispenser.db.entity.Product;
 
 /**
  * The type App database.
  */
-@Database(entities = {ProductEntity.class, EmplacementEntity.class}, version = 5)
+@Database(entities = {Product.class, Emplacement.class}, version = 6)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static volatile AppDatabase INSTANCE;
@@ -47,16 +47,16 @@ public abstract class AppDatabase extends RoomDatabase {
                     productDao.deleteAllProducts();
 
                     for (int i = 1; i <= 18; i++) {
-                        EmplacementEntity emplacementEntity = new EmplacementEntity(i);
-                        emplacementDao.insertEmplacement(emplacementEntity);
+                        Emplacement emplacement = new Emplacement(i);
+                        emplacementDao.insertEmplacement(emplacement);
                     }
 
-                    ProductEntity productEntity = new ProductEntity(1, "Cookies", 0.80f);
-                    productDao.insertProduct(productEntity);
-                    productEntity = new ProductEntity(2, "Water", 1.00f);
-                    productDao.insertProduct(productEntity);
-                    productEntity = new ProductEntity(3, "KitKat", 0.80f);
-                    productDao.insertProduct(productEntity);
+                    Product product = new Product(1, "Cookies", 0.80f);
+                    productDao.insertProduct(product);
+                    product = new Product(2, "Water", 1.00f);
+                    productDao.insertProduct(product);
+                    product = new Product(3, "KitKat", 0.80f);
+                    productDao.insertProduct(product);
                 }
             });
         }

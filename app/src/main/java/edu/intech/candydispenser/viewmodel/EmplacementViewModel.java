@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import edu.intech.candydispenser.db.entity.EmplacementEntity;
+import edu.intech.candydispenser.db.entity.Emplacement;
 import edu.intech.candydispenser.model.DataRepository;
 
 /**
@@ -16,7 +16,7 @@ import edu.intech.candydispenser.model.DataRepository;
 public class EmplacementViewModel extends AndroidViewModel {
 
     private final DataRepository repository;
-    private final LiveData<List<EmplacementEntity>> mObservableEmplacements;
+    private final LiveData<List<Emplacement>> mObservableEmplacements;
 
     /**
      * Instantiates a new Emplacement view model.
@@ -34,7 +34,7 @@ public class EmplacementViewModel extends AndroidViewModel {
      *
      * @return the all emplacements
      */
-    public LiveData<List<EmplacementEntity>> getAllEmplacements() {
+    public LiveData<List<Emplacement>> getAllEmplacements() {
         return mObservableEmplacements;
     }
 
@@ -44,25 +44,25 @@ public class EmplacementViewModel extends AndroidViewModel {
      * @param id the id
      * @return the emplacement
      */
-    public LiveData<EmplacementEntity> getEmplacement(int id) {
+    public LiveData<Emplacement> getEmplacement(int id) {
         return repository.getEmplacement(id);
     }
 
     /**
      * Insert emplacement.
      *
-     * @param emplacementEntity the emplacement entity
+     * @param emplacement the emplacement entity
      */
-    public void insertEmplacement(EmplacementEntity emplacementEntity) {
-        repository.insertEmplacement(emplacementEntity);
+    public void insertEmplacement(Emplacement emplacement) {
+        repository.insertEmplacement(emplacement);
     }
 
     /**
      * Update emplacement.
      *
-     * @param emplacementEntity the emplacement entity
+     * @param emplacement the emplacement entity
      */
-    public void updateEmplacement(EmplacementEntity emplacementEntity) {
-        repository.updateEmplacement(emplacementEntity);
+    public void updateEmplacement(Emplacement emplacement) {
+        repository.updateEmplacement(emplacement);
     }
 }

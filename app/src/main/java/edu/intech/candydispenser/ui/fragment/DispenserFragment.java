@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import edu.intech.candydispenser.R;
-import edu.intech.candydispenser.db.entity.EmplacementEntity;
+import edu.intech.candydispenser.db.entity.Emplacement;
 import edu.intech.candydispenser.ui.adapter.EmplacementAdapter;
 import edu.intech.candydispenser.viewmodel.EmplacementViewModel;
 
@@ -79,7 +79,7 @@ public class DispenserFragment extends Fragment {
         formFragment = new FormFragment();
         arguments = new Bundle();
 
-        final List<EmplacementEntity> emplacementEntityList = null;
+        final List<Emplacement> emplacementList = null;
 
         RecyclerView recyclerView = inflatedView.findViewById(R.id.recyclerview_buttons);
         adapter = new EmplacementAdapter(getActivity());
@@ -88,9 +88,9 @@ public class DispenserFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), numberOfColumns)); // Initialized RecyclerView using GirdLayoutManager
 
         EmplacementViewModel emplacementViewModel = new ViewModelProvider(this).get(EmplacementViewModel.class);
-        emplacementViewModel.getAllEmplacements().observe(getViewLifecycleOwner(), new Observer<List<EmplacementEntity>>() {
+        emplacementViewModel.getAllEmplacements().observe(getViewLifecycleOwner(), new Observer<List<Emplacement>>() {
             @Override
-            public void onChanged(List<EmplacementEntity> emplacements) {
+            public void onChanged(List<Emplacement> emplacements) {
                 adapter.setEmplacements(emplacements);
             }
         });

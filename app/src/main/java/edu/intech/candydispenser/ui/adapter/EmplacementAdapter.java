@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import edu.intech.candydispenser.R;
-import edu.intech.candydispenser.db.entity.EmplacementEntity;
+import edu.intech.candydispenser.db.entity.Emplacement;
 import edu.intech.candydispenser.ui.activity.NewProductActivity;
 import edu.intech.candydispenser.ui.fragment.FormFragment;
 
@@ -31,7 +31,7 @@ public class EmplacementAdapter extends RecyclerView.Adapter<EmplacementAdapter.
     private Bundle arguments;
     private FragmentManager fragmentManager;
     private FormFragment formFragment;
-    private List<EmplacementEntity> emplacements;
+    private List<Emplacement> emplacements;
 
     /**
      * Instantiates a new Emplacement adapter.
@@ -47,7 +47,7 @@ public class EmplacementAdapter extends RecyclerView.Adapter<EmplacementAdapter.
      *
      * @param emplacements the emplacements
      */
-    public void setEmplacements(List<EmplacementEntity> emplacements) {
+    public void setEmplacements(List<Emplacement> emplacements) {
         this.emplacements = emplacements;
         notifyDataSetChanged();
     }
@@ -64,7 +64,7 @@ public class EmplacementAdapter extends RecyclerView.Adapter<EmplacementAdapter.
     @Override
     public void onBindViewHolder(@NonNull EmplacementViewHolder holder, int position) {
         if (emplacements != null) {
-            EmplacementEntity current = emplacements.get(position);
+            Emplacement current = emplacements.get(position);
             Log.d("DEBUG", "Emplacement numéro : " + current.getId());
             Button button = holder.emplacementItemView;
             button.setText(String.valueOf(current.getId()));

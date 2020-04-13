@@ -21,7 +21,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 import edu.intech.candydispenser.R;
-import edu.intech.candydispenser.db.entity.ProductEntity;
+import edu.intech.candydispenser.db.entity.Product;
 import edu.intech.candydispenser.ui.adapter.ProductAdapter;
 import edu.intech.candydispenser.ui.fragment.FormFragment;
 import edu.intech.candydispenser.viewmodel.EmplacementViewModel;
@@ -52,11 +52,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
         emplacementViewModel = new ViewModelProvider(this).get(EmplacementViewModel.class);
 
-        productViewModel.getAllProducts().observe(this, new Observer<List<ProductEntity>>() {
+        productViewModel.getAllProducts().observe(this, new Observer<List<Product>>() {
             @Override
-            public void onChanged(@Nullable final List<ProductEntity> productEntity) {
+            public void onChanged(@Nullable final List<Product> product) {
                 // Update the cached copy of the products in the adapter.
-                adapter.setProductEntities(productEntity);
+                adapter.setProductEntities(product);
             }
         });
 
@@ -73,11 +73,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (requestCode == NEW_PRODUCT_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             try {
-                ProductEntity productEntity = new ProductEntity(
+                Product product = new Product(
                         data.getIntExtra(FormFragment.EXTRA_REPLY_NUMBER, -1),
                         data.getStringExtra(FormFragment.EXTRA_REPLY_NAME),
                         data.getFloatExtra(FormFragment.EXTRA_REPLY_PRICE, -1f));
-                productViewModel.insert(productEntity);
+                productViewModel.insert(product);
             } catch (NumberFormatException e) {
                 Toast.makeText(
                         getApplicationContext(),
@@ -102,11 +102,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             final TextView message = findViewById(R.id.text);
             try {
                 int number = Integer.parseInt(editText.getText().toString());
-                productViewModel.getProduct(number).observe(this, new Observer<ProductEntity>() {
+                productViewModel.getProduct(number).observe(this, new Observer<Product>() {
                     @Override
-                    public void onChanged(ProductEntity productEntity) {
+                    public void onChanged(Product product) {
                         try {
-                            String text = getString(R.string.display_data, productEntity.getName(), df.format(productEntity.getPrice()));
+                            String text = getString(R.string.display_data, product.getName(), df.format(product.getPrice()));
                             message.setText(text);
                         } catch (Exception e) {
                             Toast.makeText(

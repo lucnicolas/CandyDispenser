@@ -9,7 +9,7 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import edu.intech.candydispenser.db.entity.EmplacementEntity;
+import edu.intech.candydispenser.db.entity.Emplacement;
 
 import static androidx.room.OnConflictStrategy.IGNORE;
 import static androidx.room.OnConflictStrategy.REPLACE;
@@ -23,27 +23,27 @@ public interface EmplacementDao {
     /**
      * Insert emplacement.
      *
-     * @param emplacementEntity the emplacement entity
+     * @param emplacement the emplacement entity
      */
     @Insert(onConflict = IGNORE)
-    void insertEmplacement(EmplacementEntity emplacementEntity);
+    void insertEmplacement(Emplacement emplacement);
 
     /**
      * Update emplacement.
      *
-     * @param emplacementEntity the emplacement entity
+     * @param emplacement the emplacement entity
      */
     @Update(onConflict = REPLACE)
-    void updateEmplacement(EmplacementEntity emplacementEntity);
+    void updateEmplacement(Emplacement emplacement);
 
     /**
      * Remove emplacement int.
      *
-     * @param emplacementEntity the emplacement entity
+     * @param emplacement the emplacement entity
      * @return the int
      */
     @Delete
-    int removeEmplacement(EmplacementEntity emplacementEntity);
+    int removeEmplacement(Emplacement emplacement);
 
     /**
      * Gets emplacement.
@@ -51,20 +51,20 @@ public interface EmplacementDao {
      * @param id the id
      * @return the emplacement
      */
-    @Query("SELECT * FROM Emplacements WHERE id = :id")
-    LiveData<EmplacementEntity> getEmplacement(int id);
+    @Query("SELECT * FROM Emplacement WHERE id = :id")
+    LiveData<Emplacement> getEmplacement(int id);
 
     /**
      * Gets all emplacements.
      *
      * @return the all emplacements
      */
-    @Query("SELECT * FROM Emplacements")
-    LiveData<List<EmplacementEntity>> getAllEmplacements();
+    @Query("SELECT * FROM Emplacement")
+    LiveData<List<Emplacement>> getAllEmplacements();
 
     /**
      * Delete all emplacement.
      */
-    @Query("DELETE FROM Emplacements")
+    @Query("DELETE FROM Emplacement")
     void deleteAllEmplacement();
 }

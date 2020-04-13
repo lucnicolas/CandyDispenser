@@ -9,7 +9,7 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import edu.intech.candydispenser.db.entity.ProductEntity;
+import edu.intech.candydispenser.db.entity.Product;
 
 import static androidx.room.OnConflictStrategy.ABORT;
 import static androidx.room.OnConflictStrategy.REPLACE;
@@ -23,28 +23,28 @@ public interface ProductDao {
     /**
      * Insert product.
      *
-     * @param productEntity the product entity
+     * @param product the product entity
      */
     @Insert(onConflict = ABORT)
-    void insertProduct(ProductEntity productEntity);
+    void insertProduct(Product product);
 
     /**
      * Update product.
      *
-     * @param productEntity the product entity
+     * @param product the product entity
      */
     @Update(onConflict = REPLACE)
-    void updateProduct(ProductEntity productEntity);
+    void updateProduct(Product product);
 
     /**
      * Remove product int.
      *
-     * @param productEntity the product entity
+     * @param product the product entity
      * @return the int
      */
 // Return the removed product or null if it wasn't found
     @Delete
-    int removeProduct(ProductEntity productEntity);
+    int removeProduct(Product product);
 
     /**
      * Gets product.
@@ -52,20 +52,20 @@ public interface ProductDao {
      * @param number the number
      * @return the product
      */
-    @Query("SELECT * FROM Products WHERE number = :number")
-    LiveData<ProductEntity> getProduct(int number);
+    @Query("SELECT * FROM Product WHERE number = :number")
+    LiveData<Product> getProduct(int number);
 
     /**
      * Gets all products.
      *
      * @return the all products
      */
-    @Query("SELECT * FROM Products")
-    LiveData<List<ProductEntity>> getAllProducts();
+    @Query("SELECT * FROM Product")
+    LiveData<List<Product>> getAllProducts();
 
     /**
      * Delete all products.
      */
-    @Query("DELETE FROM Products")
+    @Query("DELETE FROM Product")
     void deleteAllProducts();
 }

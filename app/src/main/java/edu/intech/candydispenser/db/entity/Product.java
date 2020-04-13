@@ -9,8 +9,8 @@ import androidx.room.PrimaryKey;
 /**
  * The type Product entity.
  */
-@Entity(tableName = "Products", indices = {@Index(value = {"number"}, unique = true)})
-public class ProductEntity {
+@Entity(tableName = "Product", indices = {@Index(value = {"number"}, unique = true)})
+public class Product {
 
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") private int id;
 
@@ -27,7 +27,7 @@ public class ProductEntity {
      * @param name   the name
      * @param price  the price
      */
-    public ProductEntity(int number, String name, Float price) {
+    public Product(int number, String name, Float price) {
         this.number = number;
         this.name = name;
         this.price = price;

@@ -9,8 +9,8 @@ import java.util.List;
 import edu.intech.candydispenser.db.AppDatabase;
 import edu.intech.candydispenser.db.dao.EmplacementDao;
 import edu.intech.candydispenser.db.dao.ProductDao;
-import edu.intech.candydispenser.db.entity.EmplacementEntity;
-import edu.intech.candydispenser.db.entity.ProductEntity;
+import edu.intech.candydispenser.db.entity.Emplacement;
+import edu.intech.candydispenser.db.entity.Product;
 
 /**
  * The type Data repository.
@@ -18,10 +18,10 @@ import edu.intech.candydispenser.db.entity.ProductEntity;
 public class DataRepository {
 
     private final ProductDao productDao;
-    private final LiveData<List<ProductEntity>> allProducts;
+    private final LiveData<List<Product>> allProducts;
 
     private final EmplacementDao emplacementDAO;
-    private final LiveData<List<EmplacementEntity>> allEmplacements;
+    private final LiveData<List<Emplacement>> allEmplacements;
 
     /**
      * Instantiates a new Data repository.
@@ -47,7 +47,7 @@ public class DataRepository {
      */
 // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
-    public LiveData<List<ProductEntity>> getAllProducts() {
+    public LiveData<List<Product>> getAllProducts() {
         return allProducts;
     }
 
@@ -57,22 +57,22 @@ public class DataRepository {
      * @param number the number
      * @return the product
      */
-    public LiveData<ProductEntity> getProduct(int number) {
+    public LiveData<Product> getProduct(int number) {
         return productDao.getProduct(number);
     }
 
     /**
      * Insert product.
      *
-     * @param productEntity the product entity
+     * @param product the product entity
      */
 // You must call this on a non-UI thread or your app will throw an exception. Room ensures
     // that you're not doing any long running operations on the main thread, blocking the UI.
-    public void insertProduct(final ProductEntity productEntity) {
+    public void insertProduct(final Product product) {
         AppDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                productDao.insertProduct(productEntity);
+                productDao.insertProduct(product);
             }
         });
     }
@@ -82,7 +82,9 @@ public class DataRepository {
      *
      * @return the all emplacements
      */
-    public LiveData<List<EmplacementEntity>> getAllEmplacements() { return allEmplacements; }
+    public LiveData<List<Emplacement>> getAllEmplacements() {
+        return allEmplacements;
+    }
 
     /**
      * Gets emplacement.
@@ -90,20 +92,20 @@ public class DataRepository {
      * @param id the id
      * @return the emplacement
      */
-    public LiveData<EmplacementEntity> getEmplacement(int id) {
+    public LiveData<Emplacement> getEmplacement(int id) {
         return  emplacementDAO.getEmplacement(id);
     }
 
     /**
      * Insert emplacement.
      *
-     * @param emplacementEntity the emplacement entity
+     * @param emplacement the emplacement entity
      */
-    public void insertEmplacement(final EmplacementEntity emplacementEntity) {
+    public void insertEmplacement(final Emplacement emplacement) {
         AppDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                emplacementDAO.insertEmplacement(emplacementEntity);
+                emplacementDAO.insertEmplacement(emplacement);
             }
         });
     }
@@ -111,13 +113,13 @@ public class DataRepository {
     /**
      * Update emplacement.
      *
-     * @param emplacementEntity the emplacement entity
+     * @param emplacement the emplacement entity
      */
-    public void updateEmplacement(final EmplacementEntity emplacementEntity) {
+    public void updateEmplacement(final Emplacement emplacement) {
         AppDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                emplacementDAO.updateEmplacement(emplacementEntity);
+                emplacementDAO.updateEmplacement(emplacement);
             }
         });
     }
