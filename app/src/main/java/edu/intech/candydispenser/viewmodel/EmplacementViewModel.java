@@ -56,4 +56,13 @@ public class EmplacementViewModel extends AndroidViewModel {
     public void insertEmplacement(EmplacementEntity emplacementEntity) {
         repository.insertEmplacement(emplacementEntity);
     }
+
+    /**
+     * Update emplacement.
+     *
+     * @param emplacementEntity the emplacement entity
+     */
+    public void updateEmplacement(EmplacementEntity emplacementEntity) {
+        repository.updateEmplacement(emplacementEntity);
+    }
 }

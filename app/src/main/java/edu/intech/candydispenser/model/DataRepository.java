@@ -108,4 +108,17 @@ public class DataRepository {
         });
     }
 
+    /**
+     * Update emplacement.
+     *
+     * @param emplacementEntity the emplacement entity
+     */
+    public void updateEmplacement(final EmplacementEntity emplacementEntity) {
+        AppDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                emplacementDAO.updateEmplacement(emplacementEntity);
+            }
+        });
+    }
 }

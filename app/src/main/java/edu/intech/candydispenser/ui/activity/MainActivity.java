@@ -24,6 +24,7 @@ import edu.intech.candydispenser.R;
 import edu.intech.candydispenser.db.entity.ProductEntity;
 import edu.intech.candydispenser.ui.adapter.ProductAdapter;
 import edu.intech.candydispenser.ui.fragment.FormFragment;
+import edu.intech.candydispenser.viewmodel.EmplacementViewModel;
 import edu.intech.candydispenser.viewmodel.ProductViewModel;
 
 /**
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final DecimalFormat df = new DecimalFormat("0.00");
     private ProductViewModel productViewModel;
+    private EmplacementViewModel emplacementViewModel;
     private static final int NEW_PRODUCT_ACTIVITY_REQUEST_CODE = 1;
     private FloatingActionButton fab;
     private Button submit;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+        emplacementViewModel = new ViewModelProvider(this).get(EmplacementViewModel.class);
 
         productViewModel.getAllProducts().observe(this, new Observer<List<ProductEntity>>() {
             @Override
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ProductEntity productEntity = new ProductEntity(
                         data.getIntExtra(FormFragment.EXTRA_REPLY_NUMBER, -1),
                         data.getStringExtra(FormFragment.EXTRA_REPLY_NAME),
-                        data.getFloatExtra(FormFragment.EXTRA_REPLY_PRICE, -1f), 0);
+                        data.getFloatExtra(FormFragment.EXTRA_REPLY_PRICE, -1f));
                 productViewModel.insert(productEntity);
             } catch (NumberFormatException e) {
                 Toast.makeText(
@@ -119,8 +122,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         "Invalid product ID",
                         Toast.LENGTH_SHORT).show();
             }
-
-
         }
     }
 }

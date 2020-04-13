@@ -16,30 +16,18 @@ import edu.intech.candydispenser.db.dao.ProductDao;
 import edu.intech.candydispenser.db.entity.EmplacementEntity;
 import edu.intech.candydispenser.db.entity.ProductEntity;
 
-@Database(entities = {ProductEntity.class, EmplacementEntity.class}, version = 4)
+/**
+ * The type App database.
+ */
+@Database(entities = {ProductEntity.class, EmplacementEntity.class}, version = 5)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static volatile AppDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
+    /**
+     * The constant databaseWriteExecutor.
+     */
     public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
-
-    public abstract ProductDao productDao();
-
-    public abstract EmplacementDao emplacementDao();
-
-    public static AppDatabase getDatabase(Context context) {
-        if (INSTANCE == null) {
-            INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                    AppDatabase.class,
-                    "CandyDispenser.db")
-                    .fallbackToDestructiveMigration()
-                    .addCallback(sRoomDatabaseCallback).build();
-                    //.addCallback(sRoomDatabaseCallback).build();
-                    //.allowMainThreadQueries().build();
-        }
-        return INSTANCE;
-    }
-
     private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
@@ -63,14 +51,47 @@ public abstract class AppDatabase extends RoomDatabase {
                         emplacementDao.insertEmplacement(emplacementEntity);
                     }
 
-                    ProductEntity productEntity = new ProductEntity(1, "Cookies", 0.80f, 0);
+                    ProductEntity productEntity = new ProductEntity(1, "Cookies", 0.80f);
                     productDao.insertProduct(productEntity);
-                    productEntity = new ProductEntity(2, "Water", 1.00f, 0);
+                    productEntity = new ProductEntity(2, "Water", 1.00f);
                     productDao.insertProduct(productEntity);
-                    productEntity = new ProductEntity(3, "KitKat", 0.80f, 0);
+                    productEntity = new ProductEntity(3, "KitKat", 0.80f);
                     productDao.insertProduct(productEntity);
                 }
             });
         }
     };
+
+    /**
+     * Gets database.
+     *
+     * @param context the context
+     * @return the database
+     */
+    public static AppDatabase getDatabase(Context context) {
+        if (INSTANCE == null) {
+            INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                    AppDatabase.class,
+                    "CandyDispenser.db")
+                    .fallbackToDestructiveMigration()
+                    .addCallback(sRoomDatabaseCallback).build();
+            //.addCallback(sRoomDatabaseCallback).build();
+            //.allowMainThreadQueries().build();
+        }
+        return INSTANCE;
+    }
+
+    /**
+     * Product dao product dao.
+     *
+     * @return the product dao
+     */
+    public abstract ProductDao productDao();
+
+    /**
+     * Emplacement dao emplacement dao.
+     *
+     * @return the emplacement dao
+     */
+    public abstract EmplacementDao emplacementDao();
 }

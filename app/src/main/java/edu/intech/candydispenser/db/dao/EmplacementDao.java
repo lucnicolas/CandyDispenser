@@ -5,12 +5,14 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
 import edu.intech.candydispenser.db.entity.EmplacementEntity;
 
-import static androidx.room.OnConflictStrategy.ABORT;
+import static androidx.room.OnConflictStrategy.IGNORE;
+import static androidx.room.OnConflictStrategy.REPLACE;
 
 /**
  * The interface Emplacement dao.
@@ -23,8 +25,16 @@ public interface EmplacementDao {
      *
      * @param emplacementEntity the emplacement entity
      */
-    @Insert(onConflict = ABORT)
+    @Insert(onConflict = IGNORE)
     void insertEmplacement(EmplacementEntity emplacementEntity);
+
+    /**
+     * Update emplacement.
+     *
+     * @param emplacementEntity the emplacement entity
+     */
+    @Update(onConflict = REPLACE)
+    void updateEmplacement(EmplacementEntity emplacementEntity);
 
     /**
      * Remove emplacement int.

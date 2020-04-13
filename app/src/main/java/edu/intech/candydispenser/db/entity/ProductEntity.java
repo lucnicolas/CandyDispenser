@@ -20,21 +20,17 @@ public class ProductEntity {
 
     @NonNull @ColumnInfo(name = "price") private float price;
 
-    @ColumnInfo(name = "emplacement") private int emplacement;
-
     /**
      * Instantiates a new Product entity.
      *
-     * @param number      the number
-     * @param name        the name
-     * @param price       the price
-     * @param emplacement the emplacement
+     * @param number the number
+     * @param name   the name
+     * @param price  the price
      */
-    public ProductEntity(int number, String name, Float price, int emplacement) {
+    public ProductEntity(int number, String name, Float price) {
         this.number = number;
         this.name = name;
         this.price = price;
-        this.emplacement = emplacement;
     }
 
     /**
@@ -107,23 +103,5 @@ public class ProductEntity {
      */
     public void setPrice(float price) {
         this.price = price;
-    }
-
-    /**
-     * Gets emplacement.
-     *
-     * @return the emplacement
-     */
-    public int getEmplacement() {
-        return emplacement;
-    }
-
-    /**
-     * Sets emplacement.
-     *
-     * @param emplacement the emplacement
-     */
-    public void setEmplacement(int emplacement) {
-        this.emplacement = emplacement;
     }
 }

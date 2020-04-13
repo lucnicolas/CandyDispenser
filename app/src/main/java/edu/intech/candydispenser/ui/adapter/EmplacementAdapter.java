@@ -1,6 +1,8 @@
 package edu.intech.candydispenser.ui.adapter;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -68,6 +70,10 @@ public class EmplacementAdapter extends RecyclerView.Adapter<EmplacementAdapter.
             button.setText(String.valueOf(current.getId()));
             // R.id won't be generated for us, so we need to create one
             button.setId(current.getId());
+            if (current.getProductId() != 0) {
+                button.setBackgroundTintList(ColorStateList.valueOf(Color.DKGRAY));
+                button.setTextColor(ColorStateList.valueOf(Color.WHITE));
+            }
 
             // add our event handler (less memory than an anonymous inner class)
             button.setOnClickListener(new View.OnClickListener() {

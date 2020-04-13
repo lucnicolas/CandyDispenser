@@ -11,7 +11,8 @@ import java.util.List;
 
 import edu.intech.candydispenser.db.entity.ProductEntity;
 
-import static androidx.room.OnConflictStrategy.IGNORE;
+import static androidx.room.OnConflictStrategy.ABORT;
+import static androidx.room.OnConflictStrategy.REPLACE;
 
 /**
  * The interface Product dao.
@@ -24,7 +25,7 @@ public interface ProductDao {
      *
      * @param productEntity the product entity
      */
-    @Insert(onConflict = IGNORE)
+    @Insert(onConflict = ABORT)
     void insertProduct(ProductEntity productEntity);
 
     /**
@@ -32,7 +33,7 @@ public interface ProductDao {
      *
      * @param productEntity the product entity
      */
-    @Update(onConflict = IGNORE)
+    @Update(onConflict = REPLACE)
     void updateProduct(ProductEntity productEntity);
 
     /**
