@@ -19,7 +19,7 @@ import edu.intech.candydispenser.data.product.ProductDao;
 /**
  * The type App database.
  */
-@Database(entities = {Product.class, Box.class}, version = 7)
+@Database(entities = {Product.class, Box.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static volatile AppDatabase INSTANCE;
