@@ -50,7 +50,7 @@ public interface ProductDao {
      * @param number the number
      * @return the product
      */
-    @Query("SELECT * FROM Product WHERE number = :number")
+    @Query("SELECT * FROM Product WHERE box_id = :number")
     LiveData<Product> getProduct(int number);
 
     /**

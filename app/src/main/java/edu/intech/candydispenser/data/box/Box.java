@@ -11,9 +11,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "Box")
 public class Box {
 
-    @PrimaryKey
-    @ColumnInfo(name = "id")
-    private int id;
+    @PrimaryKey @ColumnInfo(name = "id") private int id;
 
     @NonNull @ColumnInfo(name = "productId", defaultValue = "0") private int productId;
 

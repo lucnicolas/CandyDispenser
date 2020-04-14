@@ -43,12 +43,12 @@ public abstract class AppDatabase extends RoomDatabase {
                     ProductDao productDao = INSTANCE.productDao();
                     BoxDao boxDao = INSTANCE.emplacementDao();
 
-                    boxDao.deleteAllEmplacement();
+                    boxDao.deleteAllBoxes();
                     productDao.deleteAllProducts();
 
                     for (int i = 1; i <= 18; i++) {
                         Box box = new Box(i);
-                        boxDao.insertEmplacement(box);
+                        boxDao.insertBox(box);
                     }
                 }
             });

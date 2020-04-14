@@ -74,15 +74,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (requestCode == NEW_PRODUCT_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             try {
+                int productNumber = data.getIntExtra(FormFragment.EXTRA_REPLY_NUMBER, -1);
                 Product product = new Product(
-                        data.getIntExtra(FormFragment.EXTRA_REPLY_NUMBER, -1),
+                        productNumber,
                         data.getStringExtra(FormFragment.EXTRA_REPLY_NAME),
                         data.getFloatExtra(FormFragment.EXTRA_REPLY_PRICE, -1f));
                 productViewModel.insert(product);
+
+                /*
+                Product currentProduct = productViewModel.getProduct(productNumber).getValue(); //null
+
+                Box currentBox = boxViewModel.getBox(productNumber).getValue(); //null
+
+                currentBox.setProductId(currentProduct.getId());
+                boxViewModel.updateBox(currentBox);
+                 */
+
             } catch (NumberFormatException e) {
                 Toast.makeText(
                         getApplicationContext(),
-                        "Catch errors",
+                        "Catching errors",
                         Toast.LENGTH_LONG).show();
             }
         } else {

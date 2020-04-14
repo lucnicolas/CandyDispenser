@@ -7,8 +7,8 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import edu.intech.candydispenser.data.DataRepository;
 import edu.intech.candydispenser.data.product.Product;
-import edu.intech.candydispenser.model.DataRepository;
 
 /**
  * The type Product view model.

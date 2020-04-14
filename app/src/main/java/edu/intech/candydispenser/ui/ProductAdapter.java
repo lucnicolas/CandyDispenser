@@ -50,7 +50,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         if (productEntities != null) {
             Product current = productEntities.get(position);
-            holder.productItemView.setText(current.getNumber() + " - " + current.getName() + " - " + current.getPrice());
+            holder.productItemView.setText(current.getBoxId() + " - " + current.getName() + " - " + current.getPrice());
         } else {
             // Covers the case of data not being ready yet.
             holder.productItemView.setText(R.string.no_product);

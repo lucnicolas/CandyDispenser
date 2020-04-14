@@ -9,12 +9,12 @@ import androidx.room.PrimaryKey;
 /**
  * The type Product entity.
  */
-@Entity(tableName = "Product", indices = {@Index(value = {"number"}, unique = true)})
+@Entity(tableName = "Product", indices = {@Index(value = {"box_id"}, unique = true)})
 public class Product {
 
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") private int id;
 
-    @NonNull @ColumnInfo(name = "number") private int number;
+    @NonNull @ColumnInfo(name = "box_id") private int boxId;
 
     @NonNull @ColumnInfo(name = "name") private String name;
 
@@ -23,12 +23,12 @@ public class Product {
     /**
      * Instantiates a new Product entity.
      *
-     * @param number the number
+     * @param boxId the number
      * @param name   the name
      * @param price  the price
      */
-    public Product(int number, String name, Float price) {
-        this.number = number;
+    public Product(int boxId, String name, Float price) {
+        this.boxId = boxId;
         this.name = name;
         this.price = price;
     }
@@ -56,17 +56,17 @@ public class Product {
      *
      * @return the number
      */
-    public int getNumber() {
-        return number;
+    public int getBoxId() {
+        return boxId;
     }
 
     /**
      * Sets number.
      *
-     * @param number the number
+     * @param boxId the number
      */
-    public void setNumber(int number) {
-        this.number = number;
+    public void setBoxId(int boxId) {
+        this.boxId = boxId;
     }
 
     /**

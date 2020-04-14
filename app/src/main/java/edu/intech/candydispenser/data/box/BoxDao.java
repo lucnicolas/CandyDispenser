@@ -13,7 +13,7 @@ import static androidx.room.OnConflictStrategy.IGNORE;
 import static androidx.room.OnConflictStrategy.REPLACE;
 
 /**
- * The interface Emplacement dao.
+ * The interface Box dao.
  */
 @Dao
 public interface BoxDao {
@@ -21,27 +21,27 @@ public interface BoxDao {
     /**
      * Insert emplacement.
      *
-     * @param box the emplacement entity
+     * @param box the box
      */
     @Insert(onConflict = IGNORE)
-    void insertEmplacement(Box box);
+    void insertBox(Box box);
 
     /**
      * Update emplacement.
      *
-     * @param box the emplacement entity
+     * @param box the box
      */
     @Update(onConflict = REPLACE)
-    void updateEmplacement(Box box);
+    void updateBox(Box box);
 
     /**
      * Remove emplacement int.
      *
-     * @param box the emplacement entity
+     * @param box the box
      * @return the int
      */
     @Delete
-    int removeEmplacement(Box box);
+    int removeBox(Box box);
 
     /**
      * Gets emplacement.
@@ -50,7 +50,7 @@ public interface BoxDao {
      * @return the emplacement
      */
     @Query("SELECT * FROM Box WHERE id = :id")
-    LiveData<Box> getEmplacement(int id);
+    LiveData<Box> getBox(int id);
 
     /**
      * Gets all emplacements.
@@ -58,11 +58,20 @@ public interface BoxDao {
      * @return the all emplacements
      */
     @Query("SELECT * FROM Box")
-    LiveData<List<Box>> getAllEmplacements();
+    LiveData<List<Box>> getAllBoxes();
 
     /**
      * Delete all emplacement.
      */
     @Query("DELETE FROM Box")
-    void deleteAllEmplacement();
+    void deleteAllBoxes();
+
+    /**
+     * Is free boolean.
+     *
+     * @param productId the product id
+     * @return the boolean
+     */
+    @Query("SELECT NOT EXISTS(SELECT 1 FROM Box WHERE productId = :productId LIMIT 1)")
+    Boolean isFree(int productId);
 }

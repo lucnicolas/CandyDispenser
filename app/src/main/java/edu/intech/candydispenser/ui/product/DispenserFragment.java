@@ -88,7 +88,7 @@ public class DispenserFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), numberOfColumns)); // Initialized RecyclerView using GirdLayoutManager
 
         BoxViewModel boxViewModel = new ViewModelProvider(this).get(BoxViewModel.class);
-        boxViewModel.getAllEmplacements().observe(getViewLifecycleOwner(), new Observer<List<Box>>() {
+        boxViewModel.getAllBoxes().observe(getViewLifecycleOwner(), new Observer<List<Box>>() {
             @Override
             public void onChanged(List<Box> boxes) {
                 adapter.setBoxes(boxes);

@@ -7,8 +7,8 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import edu.intech.candydispenser.data.DataRepository;
 import edu.intech.candydispenser.data.box.Box;
-import edu.intech.candydispenser.model.DataRepository;
 
 /**
  * The type Emplacement view model.
@@ -26,7 +26,7 @@ public class BoxViewModel extends AndroidViewModel {
     public BoxViewModel(Application application) {
         super(application);
         repository = new DataRepository(application);
-        mObservableEmplacements = repository.getAllEmplacements();
+        mObservableEmplacements = repository.getAllBoxes();
     }
 
     /**
@@ -34,7 +34,7 @@ public class BoxViewModel extends AndroidViewModel {
      *
      * @return the all emplacements
      */
-    public LiveData<List<Box>> getAllEmplacements() {
+    public LiveData<List<Box>> getAllBoxes() {
         return mObservableEmplacements;
     }
 
@@ -44,8 +44,8 @@ public class BoxViewModel extends AndroidViewModel {
      * @param id the id
      * @return the emplacement
      */
-    public LiveData<Box> getEmplacement(int id) {
-        return repository.getEmplacement(id);
+    public LiveData<Box> getBox(int id) {
+        return repository.getBox(id);
     }
 
     /**
@@ -53,8 +53,8 @@ public class BoxViewModel extends AndroidViewModel {
      *
      * @param box the emplacement entity
      */
-    public void insertEmplacement(Box box) {
-        repository.insertEmplacement(box);
+    public void insertBox(Box box) {
+        repository.insertBox(box);
     }
 
     /**
@@ -62,7 +62,7 @@ public class BoxViewModel extends AndroidViewModel {
      *
      * @param box the emplacement entity
      */
-    public void updateEmplacement(Box box) {
-        repository.updateEmplacement(box);
+    public void updateBox(Box box) {
+        repository.updateBox(box);
     }
 }

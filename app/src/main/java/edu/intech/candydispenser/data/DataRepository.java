@@ -1,4 +1,4 @@
-package edu.intech.candydispenser.model;
+package edu.intech.candydispenser.data;
 
 import android.app.Application;
 
@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import edu.intech.candydispenser.data.AppDatabase;
 import edu.intech.candydispenser.data.box.Box;
 import edu.intech.candydispenser.data.box.BoxDao;
 import edu.intech.candydispenser.data.product.Product;
@@ -37,7 +36,7 @@ public class DataRepository {
         productDao = db.productDao();
         allProducts = productDao.getAllProducts();
         boxDAO = db.emplacementDao();
-        allEmplacements = boxDAO.getAllEmplacements();
+        allEmplacements = boxDAO.getAllBoxes();
     }
 
     /**
@@ -82,7 +81,7 @@ public class DataRepository {
      *
      * @return the all emplacements
      */
-    public LiveData<List<Box>> getAllEmplacements() {
+    public LiveData<List<Box>> getAllBoxes() {
         return allEmplacements;
     }
 
@@ -92,8 +91,8 @@ public class DataRepository {
      * @param id the id
      * @return the emplacement
      */
-    public LiveData<Box> getEmplacement(int id) {
-        return boxDAO.getEmplacement(id);
+    public LiveData<Box> getBox(int id) {
+        return boxDAO.getBox(id);
     }
 
     /**
@@ -101,11 +100,11 @@ public class DataRepository {
      *
      * @param box the emplacement entity
      */
-    public void insertEmplacement(final Box box) {
+    public void insertBox(final Box box) {
         AppDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                boxDAO.insertEmplacement(box);
+                boxDAO.insertBox(box);
             }
         });
     }
@@ -115,11 +114,11 @@ public class DataRepository {
      *
      * @param box the emplacement entity
      */
-    public void updateEmplacement(final Box box) {
+    public void updateBox(final Box box) {
         AppDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                boxDAO.updateEmplacement(box);
+                boxDAO.updateBox(box);
             }
         });
     }
