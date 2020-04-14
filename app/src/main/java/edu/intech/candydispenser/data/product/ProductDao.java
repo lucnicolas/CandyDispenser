@@ -40,7 +40,7 @@ public interface ProductDao {
      * @param product the product entity
      * @return the int
      */
-// Return the removed product or null if it wasn't found
+    // Return the removed product or null if it wasn't found
     @Delete
     int removeProduct(Product product);
 

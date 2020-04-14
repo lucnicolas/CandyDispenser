@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -18,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import edu.intech.candydispenser.R;
 import edu.intech.candydispenser.data.product.Product;
+import edu.intech.candydispenser.viewmodel.BoxViewModel;
 import edu.intech.candydispenser.viewmodel.ProductViewModel;
 
 /**
@@ -51,10 +53,14 @@ public class FormFragment extends Fragment {
     private EditText mEditNumberView;
     private EditText mEditPriceView;
 
+    private Button mRemoveButton;
+
     private FragmentManager fragmentManager;
     private DispenserFragment dispenserFragment;
 
     private ProductViewModel productViewModel;
+    private BoxViewModel boxViewModel;
+
 
 
     /**
@@ -98,7 +104,11 @@ public class FormFragment extends Fragment {
 
         View inflatedView = inflater.inflate(R.layout.fragment_form, container, false);
 
+        mRemoveButton = inflatedView.findViewById(R.id.button_remove);
+        mRemoveButton.setVisibility(View.GONE);
+
         productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+        boxViewModel = new ViewModelProvider(this).get(BoxViewModel.class);
 
         fragmentManager = getActivity().getSupportFragmentManager();
         dispenserFragment = new DispenserFragment();
@@ -112,14 +122,16 @@ public class FormFragment extends Fragment {
         mEditNumberView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.fragmentNewProduct, dispenserFragment, "FRAG_DISPENSER");
-                transaction.commit();
+                Toast.makeText(
+                        getActivity(),
+                        "You can't edit the box ID, go back or suppress this product",
+                        Toast.LENGTH_SHORT).show();
             }
         });
         mEditPriceView = inflatedView.findViewById(R.id.edit_price);
 
         final Bundle bundle = this.getArguments();
+
         if (bundle != null) {
             if (bundle.getBoolean("UPDATE")) {
                 productViewModel.getProduct(bundle.getInt("KEY")).observe(getViewLifecycleOwner(), new Observer<Product>() {
@@ -127,6 +139,22 @@ public class FormFragment extends Fragment {
                     public void onChanged(Product product) {
                         mEditNameView.setText(product.getName());
                         mEditPriceView.setText(String.valueOf(product.getPrice()));
+                    }
+                });
+                // Removing action
+                mRemoveButton.setVisibility(View.VISIBLE);
+                mRemoveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        productViewModel.getProduct(bundle.getInt("KEY")).observe(getViewLifecycleOwner(), new Observer<Product>() {
+                            @Override
+                            public void onChanged(Product product) {
+                                productViewModel.removeProduct(product);
+                                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                                transaction.replace(R.id.fragmentNewProduct, dispenserFragment, "FRAG_DISPENSER");
+                                transaction.commit();
+                            }
+                        });
                     }
                 });
             }

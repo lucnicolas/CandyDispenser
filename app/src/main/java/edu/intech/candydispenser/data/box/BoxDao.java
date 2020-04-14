@@ -68,4 +68,7 @@ public interface BoxDao {
 
     //@Query("SELECT NOT EXISTS(SELECT 1 FROM Box WHERE productId = :productId LIMIT 1)")
     //Boolean isFree(int productId);
+
+    @Query("UPDATE Box SET product_name = '' WHERE id = :id ")
+    void clearBox(int id);
 }

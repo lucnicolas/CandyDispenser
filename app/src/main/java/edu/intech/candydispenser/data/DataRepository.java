@@ -85,6 +85,16 @@ public class DataRepository {
         });
     }
 
+    public void removeProduct(final Product product) {
+        AppDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                productDao.removeProduct(product);
+                boxDAO.clearBox(product.getBoxId());
+            }
+        });
+    }
+
     /**
      * Gets all emplacements.
      *
