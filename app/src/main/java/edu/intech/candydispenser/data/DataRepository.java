@@ -65,7 +65,7 @@ public class DataRepository {
      *
      * @param product the product entity
      */
-    // You must call this on a non-UI thread or your app will throw an exception. Room ensures
+// You must call this on a non-UI thread or your app will throw an exception. Room ensures
     // that you're not doing any long running operations on the main thread, blocking the UI.
     public void insertProduct(final Product product) {
         AppDatabase.databaseWriteExecutor.execute(new Runnable() {
@@ -76,6 +76,11 @@ public class DataRepository {
         });
     }
 
+    /**
+     * Update product.
+     *
+     * @param product the product
+     */
     public void updateProduct(final Product product) {
         AppDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
@@ -85,6 +90,11 @@ public class DataRepository {
         });
     }
 
+    /**
+     * Remove product.
+     *
+     * @param product the product
+     */
     public void removeProduct(final Product product) {
         AppDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override

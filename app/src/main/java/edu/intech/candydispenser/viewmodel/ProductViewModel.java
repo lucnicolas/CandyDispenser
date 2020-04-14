@@ -57,10 +57,20 @@ public class ProductViewModel extends AndroidViewModel {
         repository.insertProduct(product);
     }
 
+    /**
+     * Update product.
+     *
+     * @param product the product
+     */
     public void updateProduct(Product product) {
         repository.updateProduct(product);
     }
 
+    /**
+     * Remove product.
+     *
+     * @param product the product
+     */
     public void removeProduct(Product product) {
         repository.removeProduct(product);
     }

@@ -24,8 +24,8 @@ public class Product {
      * Instantiates a new Product entity.
      *
      * @param boxId the number
-     * @param name   the name
-     * @param price  the price
+     * @param name  the name
+     * @param price the price
      */
     public Product(int boxId, String name, Float price) {
         this.boxId = boxId;

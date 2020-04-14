@@ -46,6 +46,9 @@ public class FormFragment extends Fragment {
      */
     public static final String EXTRA_REPLY_PRICE = "edu.intech.candydispenser.price.REPLY";
 
+    /**
+     * The constant EXTRA_REPLY_TYPE.
+     */
     public static final String EXTRA_REPLY_TYPE = "edu.intech.candydispenser.type.REPLY";
 
 
@@ -60,7 +63,6 @@ public class FormFragment extends Fragment {
 
     private ProductViewModel productViewModel;
     private BoxViewModel boxViewModel;
-
 
 
     /**
