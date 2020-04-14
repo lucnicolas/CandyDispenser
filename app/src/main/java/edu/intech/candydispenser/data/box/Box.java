@@ -1,6 +1,5 @@
 package edu.intech.candydispenser.data.box;
 
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -13,7 +12,7 @@ public class Box {
 
     @PrimaryKey @ColumnInfo(name = "id") private int id;
 
-    @NonNull @ColumnInfo(name = "productId", defaultValue = "0") private int productId;
+    @ColumnInfo(name = "product_name") private String productName;
 
     /**
      * Instantiates a new Emplacement entity.
@@ -47,16 +46,16 @@ public class Box {
      *
      * @return the product id
      */
-    public int getProductId() {
-        return productId;
+    public String getProductName() {
+        return productName;
     }
 
     /**
      * Sets product id.
      *
-     * @param productId the product id
+     * @param productName the product id
      */
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setProductName(String  productName) {
+        this.productName = productName;
     }
 }

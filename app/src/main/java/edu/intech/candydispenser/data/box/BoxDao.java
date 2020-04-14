@@ -66,12 +66,6 @@ public interface BoxDao {
     @Query("DELETE FROM Box")
     void deleteAllBoxes();
 
-    /**
-     * Is free boolean.
-     *
-     * @param productId the product id
-     * @return the boolean
-     */
-    @Query("SELECT NOT EXISTS(SELECT 1 FROM Box WHERE productId = :productId LIMIT 1)")
-    Boolean isFree(int productId);
+    //@Query("SELECT NOT EXISTS(SELECT 1 FROM Box WHERE productId = :productId LIMIT 1)")
+    //Boolean isFree(int productId);
 }

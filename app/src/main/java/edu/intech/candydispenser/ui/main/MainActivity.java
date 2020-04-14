@@ -21,6 +21,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 import edu.intech.candydispenser.R;
+import edu.intech.candydispenser.data.box.Box;
 import edu.intech.candydispenser.data.product.Product;
 import edu.intech.candydispenser.ui.ProductAdapter;
 import edu.intech.candydispenser.ui.product.FormFragment;
@@ -75,20 +76,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (requestCode == NEW_PRODUCT_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             try {
                 int productNumber = data.getIntExtra(FormFragment.EXTRA_REPLY_NUMBER, -1);
-                Product product = new Product(
+                final Product product = new Product(
                         productNumber,
                         data.getStringExtra(FormFragment.EXTRA_REPLY_NAME),
                         data.getFloatExtra(FormFragment.EXTRA_REPLY_PRICE, -1f));
                 productViewModel.insert(product);
 
-                /*
-                Product currentProduct = productViewModel.getProduct(productNumber).getValue(); //null
-
-                Box currentBox = boxViewModel.getBox(productNumber).getValue(); //null
-
-                currentBox.setProductId(currentProduct.getId());
-                boxViewModel.updateBox(currentBox);
-                 */
+                boxViewModel.getBox(product.getBoxId()).observe(this, new Observer<Box>() {
+                    @Override
+                    public void onChanged(Box box) {
+                        box.setProductName(product.getName());
+                        boxViewModel.updateBox(box);
+                    }
+                });
 
             } catch (NumberFormatException e) {
                 Toast.makeText(

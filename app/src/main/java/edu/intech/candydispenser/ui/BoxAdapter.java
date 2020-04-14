@@ -70,7 +70,7 @@ public class BoxAdapter extends RecyclerView.Adapter<BoxAdapter.EmplacementViewH
             button.setText(String.valueOf(current.getId()));
             // R.id won't be generated for us, so we need to create one
             button.setId(current.getId());
-            if (current.getProductId() != 0) {
+            if (current.getProductName() != null && !current.getProductName().equals("")) {
                 button.setBackgroundTintList(ColorStateList.valueOf(Color.DKGRAY));
                 button.setTextColor(ColorStateList.valueOf(Color.WHITE));
             }
