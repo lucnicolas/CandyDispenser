@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import edu.intech.candydispenser.R;
-import edu.intech.candydispenser.data.Product;
+import edu.intech.candydispenser.data.product.Product;
 
 /**
  * The type Product list adapter.

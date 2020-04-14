@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import edu.intech.candydispenser.data.Box;
+import edu.intech.candydispenser.data.box.Box;
 import edu.intech.candydispenser.model.DataRepository;
 
 /**

@@ -7,10 +7,10 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import edu.intech.candydispenser.data.AppDatabase;
-import edu.intech.candydispenser.data.Box;
-import edu.intech.candydispenser.data.BoxDao;
-import edu.intech.candydispenser.data.Product;
-import edu.intech.candydispenser.data.ProductDao;
+import edu.intech.candydispenser.data.box.Box;
+import edu.intech.candydispenser.data.box.BoxDao;
+import edu.intech.candydispenser.data.product.Product;
+import edu.intech.candydispenser.data.product.ProductDao;
 
 /**
  * The type Data repository.

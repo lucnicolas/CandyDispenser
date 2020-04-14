@@ -1,4 +1,4 @@
-package edu.intech.candydispenser.data;
+package edu.intech.candydispenser.data.box;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

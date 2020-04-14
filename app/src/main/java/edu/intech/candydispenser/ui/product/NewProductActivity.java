@@ -1,4 +1,4 @@
-package edu.intech.candydispenser.ui;
+package edu.intech.candydispenser.ui.product;
 
 import android.os.Bundle;
 import android.widget.Button;

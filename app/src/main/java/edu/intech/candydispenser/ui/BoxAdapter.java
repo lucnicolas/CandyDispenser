@@ -18,7 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import edu.intech.candydispenser.R;
-import edu.intech.candydispenser.data.Box;
+import edu.intech.candydispenser.data.box.Box;
+import edu.intech.candydispenser.ui.product.FormFragment;
+import edu.intech.candydispenser.ui.product.NewProductActivity;
 
 /**
  * The type Emplacement adapter.

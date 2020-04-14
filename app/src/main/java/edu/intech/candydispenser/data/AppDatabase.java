@@ -11,6 +11,11 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import edu.intech.candydispenser.data.box.Box;
+import edu.intech.candydispenser.data.box.BoxDao;
+import edu.intech.candydispenser.data.product.Product;
+import edu.intech.candydispenser.data.product.ProductDao;
+
 /**
  * The type App database.
  */

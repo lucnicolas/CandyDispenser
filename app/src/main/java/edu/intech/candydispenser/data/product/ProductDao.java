@@ -1,4 +1,4 @@
-package edu.intech.candydispenser.data;
+package edu.intech.candydispenser.data.product;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
