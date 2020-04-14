@@ -13,8 +13,12 @@ import android.widget.EditText;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import edu.intech.candydispenser.R;
+import edu.intech.candydispenser.data.product.Product;
+import edu.intech.candydispenser.viewmodel.ProductViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,12 +44,18 @@ public class FormFragment extends Fragment {
      */
     public static final String EXTRA_REPLY_PRICE = "edu.intech.candydispenser.price.REPLY";
 
+    public static final String EXTRA_REPLY_TYPE = "edu.intech.candydispenser.type.REPLY";
+
+
     private EditText mEditNameView;
     private EditText mEditNumberView;
     private EditText mEditPriceView;
 
     private FragmentManager fragmentManager;
     private DispenserFragment dispenserFragment;
+
+    private ProductViewModel productViewModel;
+
 
     /**
      * Instantiates a new Form fragment.
@@ -88,6 +98,8 @@ public class FormFragment extends Fragment {
 
         View inflatedView = inflater.inflate(R.layout.fragment_form, container, false);
 
+        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+
         fragmentManager = getActivity().getSupportFragmentManager();
         dispenserFragment = new DispenserFragment();
 
@@ -107,8 +119,17 @@ public class FormFragment extends Fragment {
         });
         mEditPriceView = inflatedView.findViewById(R.id.edit_price);
 
-        Bundle bundle = this.getArguments();
+        final Bundle bundle = this.getArguments();
         if (bundle != null) {
+            if (bundle.getBoolean("UPDATE")) {
+                productViewModel.getProduct(bundle.getInt("KEY")).observe(getViewLifecycleOwner(), new Observer<Product>() {
+                    @Override
+                    public void onChanged(Product product) {
+                        mEditNameView.setText(product.getName());
+                        mEditPriceView.setText(String.valueOf(product.getPrice()));
+                    }
+                });
+            }
             int key = bundle.getInt("KEY", -1);
             String strKey = String.valueOf(key);
             mEditNumberView.setText(strKey);
@@ -124,6 +145,12 @@ public class FormFragment extends Fragment {
                         || TextUtils.isEmpty(mEditPriceView.getText())) {
                     getActivity().setResult(Activity.RESULT_CANCELED, replyIntent);
                 } else {
+                    if (bundle.getBoolean("UPDATE")) {
+                        replyIntent.putExtra(EXTRA_REPLY_TYPE, "UPDATE");
+                    }
+                    else {
+                        replyIntent.putExtra(EXTRA_REPLY_TYPE, "INSERT");
+                    }
                     String name = mEditNameView.getText().toString();
                     replyIntent.putExtra(EXTRA_REPLY_NAME, name);
                     String number = mEditNumberView.getText().toString();

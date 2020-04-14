@@ -64,14 +64,14 @@ public class BoxAdapter extends RecyclerView.Adapter<BoxAdapter.EmplacementViewH
     @Override
     public void onBindViewHolder(@NonNull EmplacementViewHolder holder, int position) {
         if (boxes != null) {
-            Box current = boxes.get(position);
+            final Box current = boxes.get(position);
             Log.d("DEBUG", "Emplacement numéro : " + current.getId());
             Button button = holder.emplacementItemView;
             button.setText(String.valueOf(current.getId()));
             // R.id won't be generated for us, so we need to create one
             button.setId(current.getId());
             if (current.getProductName() != null && !current.getProductName().equals("")) {
-                button.setBackgroundTintList(ColorStateList.valueOf(Color.DKGRAY));
+                button.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#6200EE")));
                 button.setTextColor(ColorStateList.valueOf(Color.WHITE));
             }
 
@@ -82,6 +82,12 @@ public class BoxAdapter extends RecyclerView.Adapter<BoxAdapter.EmplacementViewH
                     fragmentManager = ((NewProductActivity) v.getContext()).getSupportFragmentManager(); // instantiate view context
                     Log.d("DEBUG", "ID = " + v.getId());
                     arguments.putInt("KEY", v.getId());
+                    if (current.getProductName() != null && !current.getProductName().equals("")) {
+                        arguments.putBoolean("UPDATE", true);
+                    }
+                    else {
+                        arguments.putBoolean("UPDATE", false);
+                    }
                     formFragment.setArguments(arguments);
                     FragmentTransaction transaction = fragmentManager.beginTransaction();
                     transaction.replace(R.id.fragmentNewProduct, formFragment, "FRAG_FORM");

@@ -53,7 +53,11 @@ public class ProductViewModel extends AndroidViewModel {
      *
      * @param product the product entity
      */
-    public void insert(Product product) {
+    public void insertProduct(Product product) {
         repository.insertProduct(product);
+    }
+
+    public void updateProduct(Product product) {
+        repository.updateProduct(product);
     }
 }

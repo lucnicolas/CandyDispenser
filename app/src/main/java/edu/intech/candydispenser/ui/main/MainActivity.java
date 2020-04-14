@@ -74,13 +74,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_PRODUCT_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            try {
-                int productNumber = data.getIntExtra(FormFragment.EXTRA_REPLY_NUMBER, -1);
+            final int boxId = data.getIntExtra(FormFragment.EXTRA_REPLY_NUMBER, -1);
+            final String productName = data.getStringExtra(FormFragment.EXTRA_REPLY_NAME);
+            final float productPrice = data.getFloatExtra(FormFragment.EXTRA_REPLY_PRICE, -1f);
+            if (data.getStringExtra(FormFragment.EXTRA_REPLY_TYPE).equals("INSERT")) {
                 final Product product = new Product(
-                        productNumber,
-                        data.getStringExtra(FormFragment.EXTRA_REPLY_NAME),
-                        data.getFloatExtra(FormFragment.EXTRA_REPLY_PRICE, -1f));
-                productViewModel.insert(product);
+                        boxId,
+                        productName,
+                        productPrice);
+                productViewModel.insertProduct(product);
 
                 boxViewModel.getBox(product.getBoxId()).observe(this, new Observer<Box>() {
                     @Override
@@ -89,12 +91,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         boxViewModel.updateBox(box);
                     }
                 });
-
-            } catch (NumberFormatException e) {
-                Toast.makeText(
-                        getApplicationContext(),
-                        "Catching errors",
-                        Toast.LENGTH_LONG).show();
+            }
+            else if (data.getStringExtra(FormFragment.EXTRA_REPLY_TYPE).equals("UPDATE")) {
+                productViewModel.getProduct(boxId).observe(this, new Observer<Product>() {
+                    @Override
+                    public void onChanged(Product product) {
+                        product.setBoxId(boxId);
+                        product.setName(productName);
+                        product.setPrice(productPrice);
+                        productViewModel.updateProduct(product);
+                    }
+                });
             }
         } else {
             Toast.makeText(

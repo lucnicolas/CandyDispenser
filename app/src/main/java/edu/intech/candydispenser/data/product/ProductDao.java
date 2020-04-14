@@ -9,7 +9,7 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import static androidx.room.OnConflictStrategy.ABORT;
+import static androidx.room.OnConflictStrategy.IGNORE;
 import static androidx.room.OnConflictStrategy.REPLACE;
 
 /**
@@ -23,7 +23,7 @@ public interface ProductDao {
      *
      * @param product the product entity
      */
-    @Insert(onConflict = ABORT)
+    @Insert(onConflict = IGNORE)
     void insertProduct(Product product);
 
     /**
