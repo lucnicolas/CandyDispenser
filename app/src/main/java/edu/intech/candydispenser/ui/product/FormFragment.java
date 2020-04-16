@@ -17,6 +17,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.util.Objects;
+
 import edu.intech.candydispenser.R;
 import edu.intech.candydispenser.data.product.Product;
 import edu.intech.candydispenser.viewmodel.BoxViewModel;
@@ -112,7 +114,7 @@ public class FormFragment extends Fragment {
         productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
         boxViewModel = new ViewModelProvider(this).get(BoxViewModel.class);
 
-        fragmentManager = getActivity().getSupportFragmentManager();
+        fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
         dispenserFragment = new DispenserFragment();
 
         mEditNameView = inflatedView.findViewById(R.id.edit_name);
@@ -173,9 +175,9 @@ public class FormFragment extends Fragment {
                 if (TextUtils.isEmpty(mEditNumberView.getText())
                         || TextUtils.isEmpty(mEditNameView.getText())
                         || TextUtils.isEmpty(mEditPriceView.getText())) {
-                    getActivity().setResult(Activity.RESULT_CANCELED, replyIntent);
+                    Objects.requireNonNull(getActivity()).setResult(Activity.RESULT_CANCELED, replyIntent);
                 } else {
-                    if (bundle.getBoolean("UPDATE")) {
+                    if (bundle != null && bundle.getBoolean("UPDATE")) {
                         replyIntent.putExtra(EXTRA_REPLY_TYPE, "UPDATE");
                     }
                     else {
@@ -187,7 +189,7 @@ public class FormFragment extends Fragment {
                     replyIntent.putExtra(EXTRA_REPLY_NUMBER, Integer.parseInt(number));
                     String price = mEditPriceView.getText().toString();
                     replyIntent.putExtra(EXTRA_REPLY_PRICE, Float.parseFloat(price));
-                    getActivity().setResult(Activity.RESULT_OK, replyIntent);
+                    Objects.requireNonNull(getActivity()).setResult(Activity.RESULT_OK, replyIntent);
                 }
                 getActivity().finish();
             }

@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import edu.intech.candydispenser.R;
@@ -18,6 +20,7 @@ import edu.intech.candydispenser.data.product.Product;
  */
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
+    private static final DecimalFormat df = new DecimalFormat("0.00");
     private final LayoutInflater mInflater;
     private List<Product> productEntities; // Cached copy of words
 
@@ -40,17 +43,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         notifyDataSetChanged();
     }
 
+    @NonNull
     @Override
-    public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
         return new ProductViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(ProductViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         if (productEntities != null) {
             Product current = productEntities.get(position);
-            holder.productItemView.setText(current.getBoxId() + " - " + current.getName() + " - " + current.getPrice());
+            String text = mInflater.getContext().getString(R.string.recyclerview_result, current.getBoxId(), current.getName(), df.format(current.getPrice()));
+            holder.productItemView.setText(text);
         } else {
             // Covers the case of data not being ready yet.
             holder.productItemView.setText(R.string.no_product);

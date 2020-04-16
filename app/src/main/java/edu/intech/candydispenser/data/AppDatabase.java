@@ -27,7 +27,7 @@ public abstract class AppDatabase extends RoomDatabase {
     /**
      * The constant databaseWriteExecutor.
      */
-    public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
     private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
@@ -61,7 +61,7 @@ public abstract class AppDatabase extends RoomDatabase {
      * @param context the context
      * @return the database
      */
-    public static AppDatabase getDatabase(Context context) {
+    static AppDatabase getDatabase(Context context) {
         if (INSTANCE == null) {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                     AppDatabase.class,

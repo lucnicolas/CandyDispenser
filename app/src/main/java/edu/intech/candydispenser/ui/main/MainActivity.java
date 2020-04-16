@@ -19,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Objects;
 
 import edu.intech.candydispenser.R;
 import edu.intech.candydispenser.data.box.Box;
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             final int boxId = data.getIntExtra(FormFragment.EXTRA_REPLY_NUMBER, -1);
             final String productName = data.getStringExtra(FormFragment.EXTRA_REPLY_NAME);
             final float productPrice = data.getFloatExtra(FormFragment.EXTRA_REPLY_PRICE, -1f);
-            if (data.getStringExtra(FormFragment.EXTRA_REPLY_TYPE).equals("INSERT")) {
+            if (Objects.equals(data.getStringExtra(FormFragment.EXTRA_REPLY_TYPE), "INSERT")) {
                 final Product product = new Product(
                         boxId,
                         productName,
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
             }
-            else if (data.getStringExtra(FormFragment.EXTRA_REPLY_TYPE).equals("UPDATE")) {
+            else if (Objects.equals(data.getStringExtra(FormFragment.EXTRA_REPLY_TYPE), "UPDATE")) {
                 productViewModel.getProduct(boxId).observe(this, new Observer<Product>() {
                     @Override
                     public void onChanged(Product product) {

@@ -22,8 +22,9 @@
     <string name="here_you_can_search_a_product_by_enteing_a_box_id">Here you can search a product by entering a box ID</string>
     <string name="welcome_to_the_candy_dispenser">Welcome to the Candy Dispenser</string>
     <string name="type_a_number">Type a number</string>
-    <string name="exemple">Exemple</string>
+    <string name="exemple">Example</string>
     <string name="box_available">Box available</string>
     <string name="box_already_used">Box already used</string>
+    <string name="recyclerview_result">%d - %s - %s</string>
 
 </resources>
