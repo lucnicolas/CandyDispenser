@@ -76,4 +76,10 @@ public interface BoxDao {
      */
     @Query("UPDATE Box SET product_name = '' WHERE id = :id ")
     void clearBox(int id);
+
+    /**
+     * Gets last box.
+     */
+    @Query("SELECT * FROM Box ORDER BY id DESC LIMIT 1")
+    LiveData<Box> getLastBox();
 }

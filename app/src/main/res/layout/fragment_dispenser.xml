@@ -56,4 +56,33 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/newBox"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Add a new box"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@android:color/white" />
+
+
+        <Button
+            android:id="@+id/deleteBox"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="160dp"
+            android:backgroundTint="@color/colorRed"
+            android:text="Delete the last box"
+            android:textColor="@android:color/white" />
+
+    </RelativeLayout>
+
+
+
+
 </LinearLayout>

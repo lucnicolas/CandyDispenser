@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -87,11 +88,38 @@ public class DispenserFragment extends Fragment {
         int numberOfColumns = 3;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), numberOfColumns)); // Initialized RecyclerView using GirdLayoutManager
 
-        BoxViewModel boxViewModel = new ViewModelProvider(this).get(BoxViewModel.class);
+        final BoxViewModel boxViewModel = new ViewModelProvider(this).get(BoxViewModel.class);
         boxViewModel.getAllBoxes().observe(getViewLifecycleOwner(), new Observer<List<Box>>() {
             @Override
             public void onChanged(List<Box> boxes) {
                 adapter.setBoxes(boxes);
+            }
+        });
+
+        final Button newBox = inflatedView.findViewById(R.id.newBox);
+        newBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boxViewModel.getLastBox().observe(getViewLifecycleOwner(), new Observer<Box>() {
+                    @Override
+                    public void onChanged(Box box) {
+                        Box currentBox = new Box(box.getId() + 1);
+                        boxViewModel.insertBox(currentBox);
+                    }
+                });
+            }
+        });
+
+        Button deleteLastBox = inflatedView.findViewById(R.id.deleteBox);
+        deleteLastBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boxViewModel.getLastBox().observe(getViewLifecycleOwner(), new Observer<Box>() {
+                    @Override
+                    public void onChanged(Box box) {
+                        boxViewModel.removeBox(box);
+                    }
+                });
             }
         });
 

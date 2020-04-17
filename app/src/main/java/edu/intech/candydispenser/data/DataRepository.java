@@ -151,4 +151,22 @@ public class DataRepository {
             }
         });
     }
+
+    /**
+     * Remove box.
+     *
+     * @param box the box
+     */
+    public void removeBox(final Box box) {
+        AppDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                boxDAO.removeBox(box);
+            }
+        });
+    }
+
+    public LiveData<Box> getLastBox() {
+        return boxDAO.getLastBox();
+    }
 }
