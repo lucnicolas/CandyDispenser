@@ -66,12 +66,6 @@ public class BoxViewModel extends AndroidViewModel {
         repository.updateBox(box);
     }
 
-    /**
-     * Remove box.
-     *
-     * @param box the box
-     */
-    public void removeBox(Box box) { repository.removeBox(box); }
 
-    public LiveData<Box> getLastBox() { return repository.getLastBox(); }
+    public void deleteLastBox(int id) { repository.deleteLastBox(id); }
 }

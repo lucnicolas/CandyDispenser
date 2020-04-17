@@ -2,7 +2,6 @@ package edu.intech.candydispenser.data.box;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -33,15 +32,6 @@ public interface BoxDao {
      */
     @Update(onConflict = REPLACE)
     void updateBox(Box box);
-
-    /**
-     * Remove emplacement int.
-     *
-     * @param box the box
-     * @return the int
-     */
-    @Delete
-    int removeBox(Box box);
 
     /**
      * Gets emplacement.
@@ -77,9 +67,6 @@ public interface BoxDao {
     @Query("UPDATE Box SET product_name = '' WHERE id = :id ")
     void clearBox(int id);
 
-    /**
-     * Gets last box.
-     */
-    @Query("SELECT * FROM Box ORDER BY id DESC LIMIT 1")
-    LiveData<Box> getLastBox();
+    @Query("DELETE FROM Box WHERE id = :id")
+    void deleteLastBox(int id);
 }

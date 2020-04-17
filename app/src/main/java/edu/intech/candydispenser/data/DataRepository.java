@@ -1,6 +1,7 @@
 package edu.intech.candydispenser.data;
 
 import android.app.Application;
+import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
@@ -152,21 +153,39 @@ public class DataRepository {
         });
     }
 
-    /**
-     * Remove box.
-     *
-     * @param box the box
-     */
-    public void removeBox(final Box box) {
-        AppDatabase.databaseWriteExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                boxDAO.removeBox(box);
-            }
-        });
+    public void deleteLastBox(int id) {
+        new DeleteLastBoxAsync(boxDAO).execute(id);
     }
 
-    public LiveData<Box> getLastBox() {
-        return boxDAO.getLastBox();
+    public static class DeleteLastBoxAsync extends AsyncTask<Integer, Void, Void> {
+
+        private BoxDao boxDao;
+        public DeleteLastBoxAsync(BoxDao boxDao) {
+            this.boxDao = boxDao;
+        }
+
+        /**
+         * Override this method to perform a computation on a background thread. The
+         * specified parameters are the parameters passed to {@link #execute}
+         * by the caller of this task.
+         * <p>
+         * This will normally run on a background thread. But to better
+         * support testing frameworks, it is recommended that this also tolerates
+         * direct execution on the foreground thread, as part of the {@link #execute} call.
+         * <p>
+         * This method can call {@link #publishProgress} to publish updates
+         * on the UI thread.
+         *
+         * @param integers The parameters of the task.
+         * @return A result, defined by the subclass of this task.
+         * @see #onPreExecute()
+         * @see #onPostExecute
+         * @see #publishProgress
+         */
+        @Override
+        protected Void doInBackground(Integer... integers) {
+            boxDao.deleteLastBox(integers[0]);
+            return null;
+        }
     }
 }

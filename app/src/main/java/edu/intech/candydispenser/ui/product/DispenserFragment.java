@@ -82,7 +82,7 @@ public class DispenserFragment extends Fragment {
 
         final List<Box> boxList = null;
 
-        RecyclerView recyclerView = inflatedView.findViewById(R.id.recyclerview_buttons);
+        final RecyclerView recyclerView = inflatedView.findViewById(R.id.recyclerview_buttons);
         adapter = new BoxAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         int numberOfColumns = 3;
@@ -98,15 +98,15 @@ public class DispenserFragment extends Fragment {
 
         final Button newBox = inflatedView.findViewById(R.id.newBox);
         newBox.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Called when a view has been clicked.
+             *
+             * @param v The view that was clicked.
+             */
             @Override
             public void onClick(View v) {
-                boxViewModel.getLastBox().observe(getViewLifecycleOwner(), new Observer<Box>() {
-                    @Override
-                    public void onChanged(Box box) {
-                        Box currentBox = new Box(box.getId() + 1);
-                        boxViewModel.insertBox(currentBox);
-                    }
-                });
+                Box currentBox = new Box(recyclerView.getChildCount() + 1);
+                boxViewModel.insertBox(currentBox);
             }
         });
 
@@ -114,12 +114,7 @@ public class DispenserFragment extends Fragment {
         deleteLastBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boxViewModel.getLastBox().observe(getViewLifecycleOwner(), new Observer<Box>() {
-                    @Override
-                    public void onChanged(Box box) {
-                        boxViewModel.removeBox(box);
-                    }
-                });
+                boxViewModel.deleteLastBox(recyclerView.getChildCount());
             }
         });
 
